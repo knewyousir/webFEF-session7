@@ -1,0 +1,230 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+nav {
+  height: 40px;
+  width: 100%;
+  background: #4e7c92;
+  font-size: 1rem;
+  position: fixed;
+  top: 0;
+}
+nav ul {
+  height: 40px;
+  max-width: 940px;
+  margin: 0 auto;
+}
+nav li {
+  display: inline;
+  float: left;
+}
+nav a {
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 0.5rem;
+  text-shadow: none;
+}
+nav #pull {
+  display: none;
+}
+
+@media screen and (max-width: 520px) {
+  /** { color: red }*/
+  nav {
+    height: auto;
+    border-bottom: 0;
+  }
+  nav ul {
+    display: none;
+    height: auto;
+  }
+  nav li {
+    width: 100%;
+    float: left;
+    position: relative;
+    border-bottom: 1px solid #262626;
+  }
+  nav a {
+    text-align: left;
+    width: 100%;
+    text-indent: 1.5rem;
+    background: #2e2e2e;
+  }
+  nav a:hover {
+    background: #444;
+  }
+  nav #pull {
+    display: block;
+    background: #4e7c92;
+    width: 100%;
+    position: relative;
+  }
+  nav #pull:after {
+    content: "";
+    background: url(../img/nav-icon.png) no-repeat;
+    width: 60px;
+    height: 40px;
+    display: inline-block;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+  }
+}
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+body {
+  font: 100%/1.5 Cambria, Garamond, Georgia, Times, serif;
+  color: #333;
+  -moz-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  -webkit-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #4e7c92;
+  -moz-transition: 0.2s color linear;
+  -webkit-transition: 0.2s color linear;
+  transition: 0.2s color linear;
+  -webkit-tap-highlight-color: #4e7c92;
+}
+
+a:hover {
+  color: #DF3030;
+}
+
+::-moz-selection {
+  background: #4e7c92;
+  color: #fff;
+  text-shadow: none;
+}
+
+::selection {
+  background: #4e7c92;
+  color: #fff;
+  text-shadow: none;
+}
+
+h1 {
+  padding-top: 1.5rem;
+  max-width: 940px;
+  margin: 6px auto 0 auto;
+  font-size: 3rem;
+}
+
+.content-introduction {
+  max-width: 940px;
+  margin: 6px auto 26px auto;
+  padding-top: 20px;
+  border-top: 3px double #dbd1b5;
+}
+.content-introduction p {
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #666;
+}
+.content-introduction p:first-child {
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+.content-introduction p:last-child {
+  font-size: 1rem;
+}
+
+.content img {
+  width: 100%;
+}
+.content iframe {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    max-width: 940px;
+    margin: 0 auto;
+    padding-bottom: 1.5rem;
+  }
+
+  .content-main {
+    box-sizing: border-box;
+    float: left;
+    width: 60%;
+    padding-right: 1.5rem;
+  }
+
+  .content-sub {
+    float: right;
+    width: 40%;
+  }
+}
+.secondary {
+  background: #f8f7f3;
+  border: 1px solid #bfbfbf;
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=base.css.map */
