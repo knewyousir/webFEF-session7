@@ -1,21 +1,15 @@
 body {
 	font: 100%/1.5 Cambria, Garamond, Georgia, Times, serif;
 	color: #333;
-	-moz-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-	-webkit-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 	background:#fff;
 }
 a { 
 	text-decoration:none; 
 	color:#4e7c92;
-	-moz-transition: 0.2s color linear;
-	-webkit-transition: 0.2s color linear;
-	transition: 0.2s color linear;
 	-webkit-tap-highlight-color: #4e7c92;
 }
 a:hover {
 	color: #DF3030;
 }
-::-moz-selection{ background: #4e7c92; color:#fff; text-shadow: none; }
-::selection { background:#4e7c92; color:#fff; text-shadow: none; }
+
+::selection { background:#4e7c92; color:#fff; }

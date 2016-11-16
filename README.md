@@ -6,11 +6,10 @@ The CSS
 <link rel="stylesheet" type="text/css" href="styles/base.css" >
 ```
 
-And import the print.css into it on the first line:
+And import the reset.css into it on the first line:
 
 ```css
 @import url(reset.css);
-@import url(print.css) print;
 ```
 
 Branding and Introduction
@@ -59,43 +58,31 @@ h1 {
 [Koala](http://koala-app.coms)
 [Scout app](https://github.com/scout-app/scout-app/)
 
+For Scout the setup includes creating and input folder for sass and an output folder for css.
+
 Rename base.css to base.scss
 Rename reset.css to _reset.scss
-Rename print.css to _print.scss
 
 ###Imports
 
 Compare
 
 ```css
-@import url(print.css) print
+@import url(reset.css);
 ```
 
 ```css
 @import 'reset';
 ```
 
-###Variables
+Examine base.css. The first makes the css available to the browser but keeps them in separate files. The second takes the contents of the files and brings - or compiles - it into one css file.
 
-```css
-$link: #4e7c92;
-```
+- environment
+- output style
 
-rename reset and use imports
+###Nesting
 
-```
-@import 'reset'; 
-sample mixin (optional)
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
-}
-$radius: 10px;
-```
-
-recast the content introduction
+Refactor the content introduction:
 
 ```css
 .content-introduction {
@@ -121,7 +108,39 @@ recast the content introduction
 }
 ```
 
-The Responsive Main Nav
+Compare the scss file with the css file.
+
+###Variables
+
+Add to the top of base.scss:
+
+```css
+//variables
+
+$dk-blue: #4e7c92;
+$dk-yellow: #dbd1b5;
+$dk-orange: #df3030;
+$md-gray: #ddd;
+$dk-gray: #333;
+```
+
+And use the colors in base.scss.
+
+###Refactor
+
+- create styles.scss with the variables and imports
+- rename base.scss to _base.scss
+- add it to the imports
+- clean up css folder 
+- change link in index.html to `<link rel="stylesheet" type="text/css" href="styles/styles.css" >`
+
+###Map files
+
+- map the css line numbers to the scss line numbers
+- available in Development mode
+- note the line numbers in the Elements inspector
+
+##The Responsive Main Nav
 
 ```html
 <nav>
@@ -137,41 +156,92 @@ The Responsive Main Nav
 </nav>
 ```
 
-micro clearfix
+##Responsive Navbar
+
+Create a sass partial `_navigation.scss` and import it into `styles.css` with `@import 'navigation';`.
+
+Small screen:
 
 ```css
-.clearfix:before,
-.clearfix:after {
-    content: " ";
-    display: table;
-}
-.clearfix:after {
-    clear: both;
-}
-.clearfix {
-    *zoom: 1;
+nav {
+
+	ul {
+		display: none;
+	}
+	
+	a#pull {
+		display: block;
+		background-color: $dk-blue;
+		height: 32px;
+		padding-top: 12px;
+		padding-left: 12px;
+	}
+	a#pull:after {
+		content:"";
+		background: url(../img/nav-icon.png) no-repeat;
+		background-size: cover; 
+		width: 22px;
+		height: 22px;
+		color: #fff;
+		display: inline-block;
+	}
 }
 ```
 
-Add to the nav and ul
+Toggle display none to block for nav ul. 
+
+```css
+ul {
+	display: block;
+	background: $md-gray;
+}	
+li {
+	padding: 4px 2px 4px 8px;
+	border-bottom: 1px solid rgba(255,255,255,0.25);
+
+	&:hover {
+		background: $dk-gray;
+
+		a {
+			color: #fff;
+			display: inline-block;
+			width: 100%;
+		}  
+	}
+}
+```
+
+###Show/Hide Nav
+
+Set the display of nav ul to none and add our scripts at the bottom of the page before the closing body tag:
 
 ```html
-<nav class="clearfix">
-	<ul class="clearfix">
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/scripts.js"></script>
 ```
 
-Base nav CSS
+In `js/scripts.js`:
 
-Create a sass partial _navigation.scss and import it into the base.css ( @import 'navigation';  ).
+```js
+$('#pull').on('click', function() {
+	$('nav ul').slideToggle();
+	return false;
+});
+```
 
-this is the wide screen version
+Add a breakpoint variable for wide screens to the variables in styles.css:
 
 ```css
-/* Navigation */
+
+```
+
+Wide screen version
+
+```css
 nav {
 	height: 40px;
 	width: 100%;
-	background: $link;
+	background: $dk-blue;
 	font-size: 0.85rem;
 	position: fixed;
 	top: 0;
@@ -203,7 +273,7 @@ this is the small screen version.
 small screen
 
 ```css
-@media screen and (max-width: $breakpoint) {
+@media screen and (max-width: $break-one) {
 	nav {
 		height: auto;
 		border-bottom: 0;
@@ -231,7 +301,7 @@ small screen
   	  		
 	nav a#pull {
 		display: block;
-		background-color: $link;
+		background-color: $dk-blue;
 		width: 100%;
 		position: relative;
 	}
@@ -248,45 +318,6 @@ small screen
 	}
 }
 ```
-
-add jQuery at the bottom of the page before the closing of the body
-
-```html
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-```
-
-create script version 1
-
-```js
-var menu = $('nav ul');
-
-$('#pull').on('click', function() {
-  menu.slideToggle();
-  return false;
-});
-// this removes jQuery’s inline styling
-$(window).resize(function(){
-  var w = $(this).width();
-  console.log(w);
-  if(w > 800 && menu.is(':hidden')) {
-    menu.removeAttr('style');
-    console.log('done');
-  }
-});
-// this art closes the menu when clicked 
-$('li').on('click', function(e) {       
-  var w = $(window).width();
-  if(w < 800 ) {
-    menu.slideToggle();
-  }
-});
-```
-
-see .is() in jQuery http://api.jquery.com/is/
-
-see hidden selector: http://api.jquery.com/hidden-selector/
-
-Add padding to the top of the H1 to account for the nav position static
 
 might be nice to center the nav when in wide screen mode
 
@@ -762,3 +793,40 @@ run a test print
 
 ###Homework
 Continue to work on your final projects
+
+
+##Notes
+
+###Mixins
+
+```
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+$radius: 10px;
+```
+micro clearfix
+
+```css
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+```
+
+Add to the nav and ul
+
+```html
+<nav class="clearfix">
+	<ul class="clearfix">
+```
