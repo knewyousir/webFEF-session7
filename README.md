@@ -3,8 +3,14 @@
 The CSS
 
 ```html
-<link rel="stylesheet" type="text/css" href="styles/reset.css" >
 <link rel="stylesheet" type="text/css" href="styles/base.css" >
+```
+
+And import the print.css into it on the first line:
+
+```css
+@import url(reset.css);
+@import url(print.css) print;
 ```
 
 Branding and Introduction
@@ -43,15 +49,41 @@ h1 {
 }
 ```
 
-SASS
+##SASS
 
-Install/start Koala and register project
+[Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
-Duplicate and rename base.css to base.scss
+###Free Options
+(Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
+
+[Koala](http://koala-app.coms)
+[Scout app](https://github.com/scout-app/scout-app/)
+
+Rename base.css to base.scss
+Rename reset.css to _reset.scss
+Rename print.css to _print.scss
+
+###Imports
+
+Compare
+
+```css
+@import url(print.css) print
+```
+
+```css
+@import 'reset';
+```
+
+###Variables
 
 ```css
 $link: #4e7c92;
+```
+
 rename reset and use imports
+
+```
 @import 'reset'; 
 sample mixin (optional)
 @mixin border-radius($radius) {
