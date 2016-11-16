@@ -232,120 +232,75 @@ $('#pull').on('click', function() {
 Add a breakpoint variable for wide screens to the variables in styles.css:
 
 ```css
-
+$break-one: 480px;
 ```
 
-Wide screen version
+###Wide screen version
 
 ```css
-nav {
-	height: 40px;
-	width: 100%;
-	background: $dk-blue;
-	font-size: 0.85rem;
-	position: fixed;
-	top: 0;
-}
-nav ul {
-	padding: 0;
-	margin: 0;
-	height: 40px;
-}
-nav li {
-	display: inline;
-	float: left;
-}
-nav a {
-	color: #fff;
-	display: inline-block;
-	text-align: center;
-	text-decoration: none;
-	padding:9px 12px;
-	text-shadow: none;
-}
-nav a#pull {
+ul {
 	display: none;
-}
-```
+	background: $md-gray;
 
-this is the small screen version. 
-
-small screen
-
-```css
-@media screen and (max-width: $break-one) {
-	nav {
-		height: auto;
-		border-bottom: 0;
-	}
-	nav ul {
-		display: none;
-		height: auto;
-	}	
-	nav li {
-		width: 100%;
-		float: left;
-		position: relative;
-		border-bottom: 1px solid #262626;
-  	}
-
-  	nav a {
-	  	text-align: left;
-	  	width: 100%;
-	  	text-indent: 25px;
-			background: #2e2e2e;	  	
-  	}  	
-  	nav a:hover {
-	  	background:#444;
-  	}
-  	  		
-	nav a#pull {
+	@media (min-width: $break-one) {
 		display: block;
-		background-color: $dk-blue;
-		width: 100%;
-		position: relative;
 	}
-	nav a#pull:after {
-		content:"";
-		background: url(../img/nav-icon.png) no-repeat;
-		width: 60px;
-		height: 30px;
-		color: #fff;
-		display: inline-block;
-		position: absolute;
-		right: 15px;
-		top: 10px;
-	}
+
 }
 ```
-
-might be nice to center the nav when in wide screen mode
 
 ```css
-nav ul { 
-	padding: 0; 
-	margin: 0; 
-	height: 40px; 
-	max-width: $max-width; 
-	margin: 0 auto;
+#pull {
+	display: block;
+	background-color: $dk-blue;
+	height: 32px;
+	padding-top: 12px;
+	padding-left: 12px;
+	@media (min-width: $break-one) {
+		display: none;
+	}
 }
 ```
 
-also to have the nav unfurl leaving the hamburger on the top
+Then use flex:
 
-```html
-<nav class="clearfix">
-  <a href="#" id="pull">Menu</a>
-  <ul class="clearfix">
-    <li><a href="#one">Intro</a></li>
-    <li><a href="#two">Summary</a></li>
-    <li><a href="#three">Link Three</a></li>
-    <li><a href="#four">Link Four</a></li>
-    <li><a href="#five">Link Five</a></li>
-    <li><a href="#six">Contact</a></li>
-  </ul>
-</nav>
+```css
+ul {
+	display: none;
+	background: $md-gray;
+
+	@media (min-width: $break-one) {
+		display: flex;
+		background: $dk-blue;
+	}  
+
+}
 ```
+
+Format the links
+
+```css
+a {
+	@media (min-width: $break-one) {
+		color: #fff;
+	}  
+}
+```
+
+Format the li: 
+
+```css
+li { 
+	padding: 4px 2px 4px 8px;
+	border-bottom: 1px solid rgba(255,255,255,0.25);
+
+	@media (min-width: $break-one) {
+		padding: 8px;
+		border-bottom: none;
+	}
+```
+
+===
 
 Content (effects multiple regions - re-examine the DOM)
 
