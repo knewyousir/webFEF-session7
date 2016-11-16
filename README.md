@@ -31,7 +31,7 @@ h1 {
 }
 ```
 
-http://www.quirksmode.org/css/firstchild.html - select an element that is the first or last child of its parent
+[First child](http://www.quirksmode.org/css/firstchild.html) - select an element that is the first or last child of its parent
 
 ```css
 .content-introduction p:first-child {
