@@ -300,7 +300,7 @@ li {
 	}
 ```
 
-===
+##Columns for Content
 
 Content (effects multiple regions - re-examine the DOM)
 
@@ -322,36 +322,16 @@ Content (effects multiple regions - re-examine the DOM)
 }
 ```
 
-if we want to check for mobile first design
+Create a second breakpoint variable:
 
 ```css
-	@media (max-width: $breakpoint) {
-		* {
-			color: red !important;
-		}
-	}
-```
-
-vs
-
-```css
-	@media (max-width: $breakpoint) {
-		* {
-			color: red !important;
-		}
-	}
-```
-
-create a second breakpoint
-
-```css
-$breakpoint-med: 768px;
+$break-two: 768px;
 ```
 
 apply this to medium screen sizes and above only
 
 ```css
-@media (min-width: $breakpoint-med) {
+@media (min-width: $break-two) {
 	.content {
 		max-width: 940px;
 		margin: 0 auto;
@@ -370,7 +350,9 @@ apply this to medium screen sizes and above only
 }
 ```
 
-Box sizing - the universal approach:
+###Box sizing 
+
+The universal approach (applies to all elements):
 
 ```css
 *, *:before, *:after {
@@ -380,6 +362,8 @@ html {
   box-sizing: border-box;
 }
 ```
+
+Check and make corrections to the nav.
 
 The Secondary div
 
@@ -391,17 +375,39 @@ The Secondary div
 }
 ```
 
-Add the clearfix to the content and secondary divs
-
-iFrame needs to expand. Note the inline width and height parameters.
+###Micro clearfix
 
 ```css
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+```
+
+Add the clearfix to the content and secondary divs
+
+`<div class="content clearfix">`
+
+`<div class="container secondary clearfix">`
+
+###Responsive Images
+
+iFrame and images need to expand and contract to fit. 
+
+Note the inline width and height parameters for the iFrame in the HTML.
+
+```css
+img,
 iframe {
   width: 100%;
 }
 ```
 
-Video Switcher - JavaScript
+###Video Switcher - JavaScript
 
 Add the active class for the first iframe link
 
@@ -448,12 +454,15 @@ Format the video buttons
 }
 ```
 
-The Footer (note the need for border-box)
+###The Footer 
+
+Note the need for border-box and the new variable.
 
 ```css
 .footer {
+	clear: both;
 	margin-top: 40px;
-	background-color: $link;
+	background-color: $dk-blue;
 	min-height: 320px;
 	.siteinfo {
 		max-width: $max-width;
@@ -461,6 +470,7 @@ The Footer (note the need for border-box)
 		color: #fff;
 		text-shadow: none;
 		p, ul, .vcard {
+			box-sizing: border-box;
 			width: 33%;
 			padding: 20px;
 			float: left;
@@ -469,10 +479,10 @@ The Footer (note the need for border-box)
 	.siteinfo a {
 		color: #fff;
 	}
-}
+} 
 ```
 
-Nav Sub
+###Nav Sub
 
 Integrate the JavaScript for nav-sub into the layout.
 
@@ -483,23 +493,33 @@ Integrate the JavaScript for nav-sub into the layout.
 	background-color: #f8f7f3;
 	border: 1px solid #bfbfbf;
 
-	li { margin:6px 0;}
-	ul {display:none;}
-	li:first-child ul {display:block;}
-	> li > a { font-weight:bold; }
-	ul li {padding-left:12px;}
+	li { 
+		margin:6px 0;
+	}
+	ul {
+		display:none;
+	}
+	li:first-child ul {
+		display:block;
+	}
+	> li > a { 
+		font-weight:bold; 
+	}
+	ul li {
+		padding-left:12px;
+	}
 }
 ```
 
 Accordion for Nav Sub
 
 ```js
-	$('.nav-sub>li a').on('click tap', function(){
-		$('.nav-sub ul').slideUp();
-		$(this).next().slideToggle();
-  		console.log(this);
-		return false;
-	});
+$('.nav-sub>li a').on('click tap', function(){
+	$('.nav-sub ul').slideUp();
+	$(this).next().slideToggle();
+	console.log(this);
+	return false;
+});
 ```
 
 Examine the image & the dom, the panels need the same treatment as .nav-sub
@@ -520,7 +540,7 @@ Add to rounded corners - multiple selectors
 }
 ```
 
-Small Images
+###Small Images
 
 ```
 .secondary .content-sub {
@@ -543,14 +563,17 @@ Small Images
 Color & Scale Transition
 
 ```css
+
 li img {
 ...
   	transition: all 0.2s linear;
 }
+
 li img:hover {
   transform: scale(1.1);
   box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
 }
+
 ```
 
 Content Slider - examine image
@@ -598,7 +621,11 @@ h3, h4 {
 	line-height: 1.25;
 	margin-bottom: 20px;
 }
+```
+
 - effects the panels
+
+```css
 h2 + h3 {
 	margin-bottom: 7px;
 }
@@ -763,21 +790,7 @@ Continue to work on your final projects
 }
 $radius: 10px;
 ```
-micro clearfix
 
-```css
-.clearfix:before,
-.clearfix:after {
-    content: " ";
-    display: table;
-}
-.clearfix:after {
-    clear: both;
-}
-.clearfix {
-    *zoom: 1;
-}
-```
 
 Add to the nav and ul
 
