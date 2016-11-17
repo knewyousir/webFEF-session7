@@ -60,6 +60,7 @@ h1 {
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
 [Koala](http://koala-app.coms)
+
 [Scout app](https://github.com/scout-app/scout-app/)
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
@@ -353,6 +354,8 @@ apply this to medium screen sizes and above only
 	}
 }
 ```
+
+Note - we can now add `<div class="content"> ... </div>` around the `<nav>` to have it centered as well.
 
 ###Box sizing 
 
