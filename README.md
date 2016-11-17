@@ -1,6 +1,6 @@
 #Foundations Class 7 Files
 
-![Widescreen](https://github.com/foundations-fall-2016/session7/blob/master/wide.jpg)
+![Widescreen](https://github.com/foundations-fall-2016/session7/blob/master/wide.png)
 
 ![Mobile](https://github.com/foundations-fall-2016/session7/blob/master/mobile.png)
 
