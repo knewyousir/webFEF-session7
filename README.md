@@ -1,5 +1,9 @@
 #Foundations Class 7 Files
 
+![Widescreen](https://github.com/foundations-fall-2016/session7/blob/master/wide.jpg)
+
+![Mobile](https://github.com/foundations-fall-2016/session7/blob/master/mobile.jpg)
+
 The CSS
 
 ```html
