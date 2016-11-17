@@ -2,7 +2,7 @@
 
 ![Widescreen](https://github.com/foundations-fall-2016/session7/blob/master/wide.jpg)
 
-![Mobile](https://github.com/foundations-fall-2016/session7/blob/master/mobile.jpg)
+![Mobile](https://github.com/foundations-fall-2016/session7/blob/master/mobile.png)
 
 The CSS
 
