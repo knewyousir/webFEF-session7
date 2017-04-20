@@ -1,6 +1,6 @@
-#Foundations Class 7 Files
+# Foundations Class 7 Files
 
-##Homework
+## Homework
 - Use JavaScript to enable the video switcher buttons below the default video to switch the video on click
 - format the buttons using SASS and Koala
 - use SASS `@import` and a underscored scss file to import the styles
@@ -59,11 +59,11 @@ h1 {
 }
 ```
 
-##SASS
+## SASS
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
-###Free Options
+### Free Options
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
 [Koala](http://koala-app.coms)
@@ -75,7 +75,7 @@ For Scout the setup includes creating and input folder for sass and an output fo
 Rename base.css to base.scss
 Rename reset.css to _reset.scss
 
-###Imports
+### Imports
 
 Compare
 
@@ -92,7 +92,7 @@ Examine base.css. The first makes the css available to the browser but keeps the
 - environment
 - output style
 
-###Nesting
+### Nesting
 
 Refactor the content introduction:
 
@@ -122,7 +122,7 @@ Refactor the content introduction:
 
 Compare the scss file with the css file.
 
-###Variables
+### Variables
 
 Add to the top of base.scss:
 
@@ -138,7 +138,7 @@ $dk-gray: #333;
 
 And use the colors in base.scss.
 
-###Refactor
+### Refactor
 
 - create styles.scss with the variables and imports
 - rename base.scss to _base.scss
@@ -146,7 +146,7 @@ And use the colors in base.scss.
 - clean up css folder 
 - change link in index.html to `<link rel="stylesheet" type="text/css" href="styles/styles.css" >`
 
-###Map files
+### Map files
 
 - map the css line numbers to the scss line numbers
 - available in Development mode
@@ -223,7 +223,7 @@ li {
 }
 ```
 
-###Show/Hide Nav
+### Show/Hide Nav
 
 Set the display of nav ul to none and add our scripts at the bottom of the page before the closing body tag:
 
@@ -247,7 +247,7 @@ Add a breakpoint variable for wide screens to the variables in styles.css:
 $break-one: 480px;
 ```
 
-###Wide screen version
+### Wide screen version
 
 ```css
 ul {
@@ -364,7 +364,7 @@ apply this to medium screen sizes and above only
 
 Note - we can now add `<div class="content"> ... </div>` around the `<nav>` to have it centered as well.
 
-###Box sizing 
+### Box sizing 
 
 The universal approach (applies to all elements):
 
@@ -389,7 +389,7 @@ The Secondary div
 }
 ```
 
-###Micro clearfix
+### Micro clearfix
 
 ```css
 .clearfix:before,
@@ -408,7 +408,7 @@ Add the clearfix to the content and secondary divs
 
 `<div class="container secondary clearfix">`
 
-###Responsive Images
+### Responsive Images
 
 iFrame and images need to expand and contract to fit. 
 
@@ -421,7 +421,7 @@ iframe {
 }
 ```
 
-###Video Switcher - JavaScript
+### Video Switcher - JavaScript
 
 Add the active class for the first iframe link
 
@@ -468,7 +468,7 @@ Format the video buttons
 }
 ```
 
-###The Footer 
+### The Footer 
 
 Note the need for border-box and the new variable.
 
@@ -496,7 +496,7 @@ Note the need for border-box and the new variable.
 } 
 ```
 
-###Nav Sub
+### Nav Sub
 
 Integrate the JavaScript for nav-sub into the layout.
 
@@ -554,7 +554,7 @@ Add to rounded corners - multiple selectors
 }
 ```
 
-###Small Images
+### Small Images
 
 ```
 .secondary .content-sub {
@@ -787,13 +787,13 @@ add to media query:
 run a test print
 
 
-###Homework
+### Homework
 Continue to work on your final projects
 
 
 ##Notes
 
-###Mixins
+### Mixins
 
 ```
 @mixin border-radius($radius) {
