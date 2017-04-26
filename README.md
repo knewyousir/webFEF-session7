@@ -1,16 +1,29 @@
-# Foundations Class 7 Files
+#Foundations Class 7 Files
 
 ## Homework
+1. Install [GIT](https://git-scm.com) on your laptop
+2. Carefully follow the tutorial on [Gituhub](https://try.github.io/levels/1/challenges/1)
+3. Create an account on [Github](https://github.com)
 
-- Use JavaScript to enable the video switcher buttons below the default video to switch the video on click
-- format the buttons using SASS and Koala
-- use SASS `@import` and a underscored scss file to import the styles
+## Tooling
 
-<!-- [Here are](https://github.com/DannyBoyNYC/mysession7) my in-class files -->
+```
+$ cd <session7>
+$ npm init -y
+$ npm install browser-sync node-sass concurrently --save-dev
+```
 
-![Widescreen](https://github.com/foundations-fall-2016/session7/blob/master/siteDesign.png)
+Package.json scripts (similar to last week's):
 
-![Mobile](https://github.com/foundations-fall-2016/session7/blob/master/mobile.png)
+```
+  "scripts": {
+    "sassy": "node-sass --watch sass --output app/css --source-map true",
+    "start": "browser-sync start --server 'app' --files 'app'",
+    "boom!": "concurrently \"npm run start\" \"npm run sassy\" "
+  },
+```
+
+`$ npm run boom!`
 
 The CSS
 
@@ -60,15 +73,14 @@ h1 {
 }
 ```
 
-## SASS
+##SASS
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
-### Free Options
+###Free Options
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
 [Koala](http://koala-app.coms)
-
 [Scout app](https://github.com/scout-app/scout-app/)
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
@@ -76,7 +88,7 @@ For Scout the setup includes creating and input folder for sass and an output fo
 Rename base.css to base.scss
 Rename reset.css to _reset.scss
 
-### Imports
+###Imports
 
 Compare
 
@@ -93,7 +105,7 @@ Examine base.css. The first makes the css available to the browser but keeps the
 - environment
 - output style
 
-### Nesting
+###Nesting
 
 Refactor the content introduction:
 
@@ -123,11 +135,11 @@ Refactor the content introduction:
 
 Compare the scss file with the css file.
 
-### Variables
+###Variables
 
 Add to the top of base.scss:
 
-```css
+```
 //variables
 
 $dk-blue: #4e7c92;
@@ -147,7 +159,7 @@ And use the colors in base.scss.
 - clean up css folder 
 - change link in index.html to `<link rel="stylesheet" type="text/css" href="styles/styles.css" >`
 
-### Map files
+###Map files
 
 - map the css line numbers to the scss line numbers
 - available in Development mode
@@ -235,11 +247,22 @@ Set the display of nav ul to none and add our scripts at the bottom of the page 
 
 In `js/scripts.js`:
 
-```js
+```
 $('#pull').on('click', function() {
 	$('nav ul').slideToggle();
 	return false;
 });
+```
+
+```
+const menuButton = document.querySelector('#pull')
+const menu = document.querySelector('nav ul')
+menuButton.addEventListener('click', toggleMenu)
+
+function toggleMenu(){
+	menu.classList.toggle('show');
+	event.preventDefault();
+}
 ```
 
 Add a breakpoint variable for wide screens to the variables in styles.css:
@@ -248,7 +271,7 @@ Add a breakpoint variable for wide screens to the variables in styles.css:
 $break-one: 480px;
 ```
 
-### Wide screen version
+###Wide screen version
 
 ```css
 ul {
@@ -313,7 +336,7 @@ li {
 	}
 ```
 
-##Columns for Content
+## Columns for Content
 
 Content (effects multiple regions - re-examine the DOM)
 
@@ -362,8 +385,6 @@ apply this to medium screen sizes and above only
 	}
 }
 ```
-
-Note - we can now add `<div class="content"> ... </div>` around the `<nav>` to have it centered as well.
 
 ### Box sizing 
 
@@ -439,7 +460,7 @@ Add the active class for the first iframe link
 
 Add the JavaScript
 
-```js
+```
 $('.content-video a').on('click',function(){
 	$('.content-video a').removeClass('active');
 	$(this).addClass('active');
@@ -448,7 +469,64 @@ $('.content-video a').on('click',function(){
 	console.log(videoToPlay);
 	return false;
  });
- ```
+```
+
+```
+const videoLinks = document.querySelectorAll('.content-video a')
+const videoLinksArray = [...videoLinks]
+videoLinksArray.forEach( videoLink => videoLink.addEventListener('click', selectVideo ))
+
+function selectVideo(){
+	console.log(this)
+	event.preventDefault()
+}
+```
+
+```
+function selectVideo(){
+	const videoToPlay = this.getAttribute('href')
+	console.log(videoToPlay)
+	event.preventDefault()
+}
+```
+
+Add the iFrame
+
+```
+const iFrame = document.querySelector('iframe')
+const videoLinks = document.querySelectorAll('.content-video a')
+const videoLinksArray = [...videoLinks]
+videoLinksArray.forEach( videoLink => videoLink.addEventListener('click', selectVideo ))
+
+function selectVideo(){
+	const videoToPlay = this.getAttribute('href')
+	iFrame.setAttribute('src', videoToPlay)
+	console.log(iFrame)
+	event.preventDefault()
+}
+```
+
+active class
+
+```
+const iFrame = document.querySelector('iframe')
+const videoLinks = document.querySelectorAll('.content-video a')
+const videoLinksArray = [...videoLinks]
+videoLinksArray.forEach( videoLink => videoLink.addEventListener('click', selectVideo ))
+
+function selectVideo(){
+	removeActiveClass()
+	this.classList.add('active')
+	const videoToPlay = this.getAttribute('href')
+	iFrame.setAttribute('src', videoToPlay)
+	console.log(iFrame)
+	event.preventDefault()
+}
+
+function removeActiveClass(){
+	videoLinksArray.forEach( videoLink => videoLink.classList.remove('active'))
+}
+```
 
 Format the video buttons
 
@@ -469,7 +547,7 @@ Format the video buttons
 }
 ```
 
-### The Footer 
+###The Footer 
 
 Note the need for border-box and the new variable.
 
@@ -497,7 +575,7 @@ Note the need for border-box and the new variable.
 } 
 ```
 
-### Nav Sub
+###Nav Sub
 
 Integrate the JavaScript for nav-sub into the layout.
 
@@ -537,6 +615,68 @@ $('.nav-sub>li a').on('click tap', function(){
 });
 ```
 
+```
+const subnavLinks = document.querySelectorAll('.nav-sub > li a')
+const subnavLinksArray = [...subnavLinks]
+subnavLinksArray.forEach( subnavLink => subnavLink.addEventListener('click', openAccordion))
+
+function openAccordion(){
+	console.log(this)
+	event.preventDefault()
+}
+```
+
+Refine the selector (see [Combinators](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Simple_selectors))
+
+```
+const subnavLinks = document.querySelectorAll('.nav-sub > li > a')
+console.log(subnavLinks)
+const subnavLinksArray = [...subnavLinks]
+subnavLinksArray.forEach( subnavLink => subnavLink.addEventListener('click', openAccordion))
+
+function openAccordion(){
+	console.log(this)
+	event.preventDefault()
+}
+```
+
+[DOM Traversal](https://www.w3schools.com/jsref/dom_obj_document.asp)
+
+nextElementSibling, nextSibling, previousSibling, childNodes ...
+
+```
+const subnavLinks = document.querySelectorAll('.nav-sub > li > a')
+console.log(subnavLinks)
+const subnavLinksArray = [...subnavLinks]
+subnavLinksArray.forEach( subnavLink => subnavLink.addEventListener('click', openAccordion))
+
+function openAccordion(){
+	this.nextElementSibling.classList.toggle('active')
+	event.preventDefault()
+}
+```
+
+Idea - use `.nav-sub > li` as a selector for subnavLinks
+
+Remove the active class
+
+```
+const subnavLinks = document.querySelectorAll('.nav-sub > li > a')
+console.log(subnavLinks)
+const subnavLinksArray = [...subnavLinks]
+subnavLinksArray.forEach( subnavLink => subnavLink.addEventListener('click', openAccordion))
+
+function openAccordion(){
+	removeActiveClass()
+	this.nextElementSibling.classList.toggle('active')
+	event.preventDefault()
+}
+
+function removeActiveClass(){
+	subnavLinksArray.forEach( subnavLink => subnavLink.nextElementSibling.classList.remove('active'))
+}
+```
+
 Examine the image & the dom, the panels need the same treatment as .nav-sub
 
 ```css
@@ -555,7 +695,7 @@ Add to rounded corners - multiple selectors
 }
 ```
 
-### Small Images
+###Small Images
 
 ```
 .secondary .content-sub {
@@ -578,17 +718,14 @@ Add to rounded corners - multiple selectors
 Color & Scale Transition
 
 ```css
-
 li img {
 ...
   	transition: all 0.2s linear;
 }
-
 li img:hover {
   transform: scale(1.1);
   box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
 }
-
 ```
 
 Content Slider - examine image
@@ -788,13 +925,13 @@ add to media query:
 run a test print
 
 
-### Homework
+###Homework
 Continue to work on your final projects
 
 
 ##Notes
 
-### Mixins
+###Mixins
 
 ```
 @mixin border-radius($radius) {
