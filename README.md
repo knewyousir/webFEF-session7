@@ -73,11 +73,11 @@ h1 {
 }
 ```
 
-##SASS
+## SASS
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
-###Free Options
+### Free Options
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
 [Koala](http://koala-app.coms)
@@ -88,7 +88,7 @@ For Scout the setup includes creating and input folder for sass and an output fo
 Rename base.css to base.scss
 Rename reset.css to _reset.scss
 
-###Imports
+### Imports
 
 Compare
 
@@ -159,13 +159,13 @@ And use the colors in base.scss.
 - clean up css folder 
 - change link in index.html to `<link rel="stylesheet" type="text/css" href="styles/styles.css" >`
 
-###Map files
+### Map files
 
 - map the css line numbers to the scss line numbers
 - available in Development mode
 - note the line numbers in the Elements inspector
 
-##The Responsive Main Nav
+## The Responsive Main Nav
 
 ```html
 <nav>
@@ -181,7 +181,7 @@ And use the colors in base.scss.
 </nav>
 ```
 
-##Responsive Navbar
+## Responsive Navbar
 
 Create a sass partial `_navigation.scss` and import it into `styles.css` with `@import 'navigation';`.
 
@@ -642,7 +642,7 @@ function openAccordion(){
 
 [DOM Traversal](https://www.w3schools.com/jsref/dom_obj_document.asp)
 
-nextElementSibling, nextSibling, previousSibling, childNodes ...
+nextElementSibling, nextSibling, previousSibling, childNodes, firstChild ...
 
 ```
 const subnavLinks = document.querySelectorAll('.nav-sub > li > a')
@@ -754,6 +754,45 @@ $('.image-tn a').on('click tap', function(){
     $('.caption').html(titleText);
     return false;
 });
+```
+
+```
+const carouselLinks = document.querySelectorAll('.image-tn a')
+const carouselLinksArray = [...carouselLinks]
+const carousel = document.querySelector('.content-slider img')
+
+carouselLinksArray.forEach( carouselLink => carouselLink.addEventListener('click', runCarousel ))
+
+function runCarousel(){
+	const imageHref = this.getAttribute('href')
+	carousel.setAttribute('src', imageHref)
+	event.preventDefault()
+}
+```
+
+Set the text in the carousel.
+
+Find the appropriate traversal.
+
+```
+function runCarousel(){
+	const imageHref = this.getAttribute('href')
+	const titleText = this.firstChild.title
+	console.log(titleText)
+	carousel.setAttribute('src', imageHref)
+	event.preventDefault()
+}
+```
+
+```
+function runCarousel(){
+	const imageHref = this.getAttribute('href')
+	const titleText = this.firstChild.title
+	carouselPara.innerHTML = titleText
+	console.log(carouselPara)
+	carousel.setAttribute('src', imageHref)
+	event.preventDefault()
+}
 ```
 
 hide the h2 and p in small screen view!
