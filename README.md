@@ -1,11 +1,12 @@
 # Foundations Class 7 Files
 
 ## Homework
+
 - Use JavaScript to enable the video switcher buttons below the default video to switch the video on click
 - format the buttons using SASS and Koala
 - use SASS `@import` and a underscored scss file to import the styles
 
-[Here are](https://github.com/DannyBoyNYC/mysession7) my in-class files
+<!-- [Here are](https://github.com/DannyBoyNYC/mysession7) my in-class files -->
 
 ![Widescreen](https://github.com/foundations-fall-2016/session7/blob/master/siteDesign.png)
 
