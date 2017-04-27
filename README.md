@@ -202,6 +202,7 @@ nav {
 Show and format the link:
 
 ```
+
 	a#pull {
 		display: block;
 		background-color: $link;
@@ -209,6 +210,7 @@ Show and format the link:
 		padding-top: 12px;
 		padding-left: 12px;
 	}
+
 	a#pull:after {
 		content:"";
 		background: url(../img/nav-icon.png) no-repeat;
@@ -219,6 +221,7 @@ Show and format the link:
 		display: inline-block;
 	}
 }
+
 ```
 
 Remove the text element on the #pull.
