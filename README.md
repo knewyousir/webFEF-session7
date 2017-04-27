@@ -1,6 +1,7 @@
 # Foundations Session 7 
 
-
+[image](wide.png)
+[image](mobile.png)
 
 ## Homework
 
@@ -348,6 +349,7 @@ nav {
 		// display: none;
 		transform: translateY(-200px);
 		max-height: 1px;
+		opacity: 0;
 		transition: all .3s;
 		background: $light-gray;
 ```
@@ -358,6 +360,7 @@ Use the same properties to show it:
 .show { 
 	transform: translateY(0);
 	max-height: 1000px;
+	opacity: 1;
 	transition: all .3s;
 }
 ```
