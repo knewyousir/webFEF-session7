@@ -25,37 +25,36 @@ Package.json scripts (similar to last week's):
 
 `$ npm run boom!`
 
-The CSS
-
-```html
-<link rel="stylesheet" type="text/css" href="styles/base.css" >
-```
-
-And import the reset.css into it on the first line:
-
-```css
-@import url(reset.css);
-```
+## CSS
 
 Branding and Introduction
 
 in base.css
 
 ```css
-h1 {
+header {
+	
+}
+
+header h1 {
 	max-width: 940px;
 	height: 88px;
 	margin: 6px auto 0 auto;
 	font-size:48px;
 }
-.content-introduction {
+header p {
+	font-size: 1.5rem;
 	max-width: 940px;
 	margin: 6px auto 26px auto;
-	padding-top: 20px;
-	border-top: 3px double #dbd1b5;
-}
-.content-introduction p {
 	text-transform: uppercase;
+}
+header h1 + p {
+	padding-top: 1rem;
+	border-top: 3px double #dbd1b5;
+	padding-bottom: 0.5rem;
+}
+header p + p {
+	font-size: 1rem;
 	line-height: 1.1;
 	color: #666;
 }
