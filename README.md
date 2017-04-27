@@ -1,7 +1,7 @@
 # Foundations Session 7 
 
-[image](wide.png)
-[image](mobile.png)
+![image](wide.png)
+![image](mobile.png)
 
 ## Homework
 
