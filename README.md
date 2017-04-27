@@ -51,6 +51,8 @@ header p {
 	font-size: 1.5rem;
 	max-width: 940px;
 	text-transform: uppercase;
+	line-height: 1.1;
+	margin-bottom: 1rem;
 }
 header h1 + p {
 	padding-top: 1rem;
@@ -67,6 +69,7 @@ header p + p {
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
+
 ### Free Options
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
@@ -79,6 +82,7 @@ Save base.css to sass/imports/_header.scss
 Save reset.css to sass/imports/_reset.scss
 
 Create styles.scss and import both the above.
+
 
 ### Nesting
 
@@ -110,7 +114,9 @@ header {
 
 ### Media Query - Mobile First
 
-Add a media query to hide the paragraphs on small screens:
+Add a media query to hide the paragraphs on small screens.
+
+_header.scss:
 
 ```
 	p {
@@ -161,7 +167,14 @@ $light-gray: #ddd;
 $dk-yellow: #dbd1b5;
 ```
 
-And use the colors in _header.scss.
+Add breakpoint variables in _variables.scss for 480px and 768px.
+
+```
+$break-sm: 480px;
+$break-med: 768px;
+```
+
+Apply the color and max-width variables in _header.scss.
 
 
 Note the map file.
@@ -198,6 +211,11 @@ nav {
 	ul {
 		display: none;
 	}
+	li {
+		padding: 4px 2px 4px 8px;
+		border-bottom: 1px solid rgba(255,255,255,0.25);
+	}
+}
 ```
 
 Show and format the link:
@@ -230,13 +248,6 @@ Remove the text element on the #pull.
 
 ### Large Screen
 
-Create breakpoints in _variables.scss for 480px and 768px.
-
-```
-$break-sm: 480px;
-$break-med: 768px;
-```
-
 Add media queries for medium and larger screens
 
 Hide the hamburger on wider screens:
@@ -259,7 +270,7 @@ Show the navigation:
 ```
 	ul {
 		display: none;
-		background: $lt-gray;
+		background: $light-gray;
 		@media (min-width: $break-sm){
 			display: flex;
 			justify-content: space-between;
@@ -269,7 +280,17 @@ Show the navigation:
 	}
 ```
 
-The list items (horizontal display)
+Can't see the anchor tags:
+
+```
+		a {
+			@media (min-width: $break-sm){
+					color: #fff;
+			}
+		}
+```
+
+Format the list items (horizontal display)
 
 ```
 	li {
@@ -280,12 +301,11 @@ The list items (horizontal display)
 			border-bottom: none;
 			flex-grow: 1;
 		}
+```
 
-		a {
-			@media (min-width: $break-sm){
-					color: #fff;
-			}
-		}
+Add hover effect:
+
+```
 
 		&:hover {
 			background: $text;
@@ -301,6 +321,72 @@ The list items (horizontal display)
 ```
 
 Note the css for hover.
+
+Here is the entire file for _navigation.scss:
+
+```
+// _navigation.scss
+
+nav {
+
+	ul {
+		display: none;
+		background: $light-gray;
+		@media (min-width: $break-sm){
+			display: flex;
+			justify-content: space-between;
+			background: $link;
+			text-align: center;
+		}
+		a {
+			@media (min-width: $break-sm){
+				color: #fff;
+			}
+		}
+		li {
+			padding: 4px 2px 4px 8px;
+			border-bottom: 1px solid rgba(255,255,255,0.25);
+			@media (min-width: $break-sm){
+				padding: 0.5rem;
+				border-bottom: none;
+				flex-grow: 1;
+			}
+			&:hover {
+				background: $text;
+
+				a {
+					color: #fff;
+					display: inline-block;
+					width: 100%;
+
+				}  
+			}
+		}
+	}
+	
+
+	a#pull {
+		display: block;
+		background-color: $link;
+		height: 32px;
+		padding-top: 12px;
+		padding-left: 12px;
+		@media (min-width: $break-sm) {
+			display: none;
+		}
+	}
+
+	a#pull:after {
+		content:"";
+		background: url(../img/nav-icon.png) no-repeat;
+		background-size: cover; 
+		width: 22px;
+		height: 22px;
+		color: #fff;
+		display: inline-block;
+	}
+}
+```
 
 
 
