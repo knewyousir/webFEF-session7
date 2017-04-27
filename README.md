@@ -494,19 +494,6 @@ iframe {
 
 ### Video Switcher - JavaScript
 
-Add css for the active class (for the first video iframe link):
-
-```css
-.btn-list {
-	padding: 6px;
-	.active { 
-		background: #87a3af;
-		text-shadow: none; 
-		color: #fff;
-	}
-}
-```
-
 The old school JavaScript
 
 ```
@@ -555,7 +542,20 @@ function selectVideo(){
 }
 ```
 
-active class
+Active class
+
+Add css for the active class (for the first video iframe link):
+
+```css
+.btn-list {
+	padding: 6px;
+	.active { 
+		background: #87a3af;
+		text-shadow: none; 
+		color: #fff;
+	}
+}
+```
 
 ```
 const iFrame = document.querySelector('iframe')
