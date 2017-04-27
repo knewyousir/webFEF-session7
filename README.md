@@ -142,7 +142,7 @@ Change it to use mobile first design pattern:
 	}
 ```
 
-###Variables
+### Variables
 
 Add to _variables.scss to imports with:
 
@@ -171,7 +171,7 @@ Note the map file.
 
 ## Responsive Main Nav
 
-Tidy up the old HTML and add a link to shw the menu on small screens:
+Tidy up the old HTML and add a link `<a href="#" id="pull">Menu</a>` to show the menu on small screens:
 
 ```
 <nav>
@@ -222,22 +222,6 @@ Show and format the link:
 ```
 
 Remove the text element on the #pull.
-
-Make sure it is above the list:
-
-```
-<nav>
-  <a href="#" id="pull"></a>
-  <ul>
-    <li><a href="#one">Intro</a></li>
-    <li><a href="#two">Summary</a></li>
-    <li><a href="#three">Skills</a></li>
-    <li><a href="#four">Experience</a></li>
-    <li><a href="#five">Education</a></li>
-    <li><a href="#six">Contact</a></li>
-  </ul>
-</nav>
-```
 
 
 ### Large Screen
@@ -384,7 +368,7 @@ a#pull {
 	display: block;
 ```
 
-Note that we have a poblem in wider screen view - the nav is not showing.
+Note that we have a problem in wider screen view - the nav is not showing.
 
 Reset the ul:
 
@@ -606,7 +590,7 @@ Format the video buttons
 }
 ```
 
-###The Footer 
+### The Footer 
 
 Note the need for border-box and the new variable.
 
@@ -634,7 +618,7 @@ Note the need for border-box and the new variable.
 } 
 ```
 
-###Nav Sub
+### Nav Sub
 
 Integrate the JavaScript for nav-sub into the layout.
 
@@ -754,7 +738,7 @@ Add to rounded corners - multiple selectors
 }
 ```
 
-###Small Images
+### Small Images
 
 ```
 .secondary .content-sub {
@@ -1026,9 +1010,9 @@ run a test print
 
 
 
-##Notes
+## Notes
 
-###Mixins
+### Mixins
 
 ```
 @mixin border-radius($radius) {
