@@ -1,9 +1,13 @@
-#Foundations Class 7 Files
+# Foundations Session 7 
+
+
 
 ## Homework
+
 1. Install [GIT](https://git-scm.com) on your laptop
 2. Carefully follow the tutorial on [Gituhub](https://try.github.io/levels/1/challenges/1)
 3. Create an account on [Github](https://github.com)
+
 
 ## Tooling
 
@@ -25,50 +29,36 @@ Package.json scripts (similar to last week's):
 
 `$ npm run boom!`
 
+
 ## CSS
 
-Branding and Introduction
+Branding and Introduction. 
+
+Clean up the old html.
 
 in base.css
 
 ```css
 header {
-	
+	max-width: 940px;
 }
 
 header h1 {
-	max-width: 940px;
-	height: 88px;
-	margin: 6px auto 0 auto;
-	font-size:48px;
+	font-size: 3rem;
 }
 header p {
 	font-size: 1.5rem;
 	max-width: 940px;
-	margin: 6px auto 26px auto;
 	text-transform: uppercase;
 }
 header h1 + p {
 	padding-top: 1rem;
 	border-top: 3px double #dbd1b5;
-	padding-bottom: 0.5rem;
 }
 header p + p {
 	font-size: 1rem;
 	line-height: 1.1;
 	color: #666;
-}
-```
-
-[First child](http://www.quirksmode.org/css/firstchild.html) - select an element that is the first or last child of its parent
-
-```css
-.content-introduction p:first-child {
-	margin-bottom: 12px;
-	font-size: 26px;
-}
-.content-introduction p:last-child {
-	font-size: 14px;
 }
 ```
 
@@ -84,90 +74,108 @@ header p + p {
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
 
-Rename base.css to base.scss
-Rename reset.css to _reset.scss
+Save base.css to sass/imports/_header.scss
+Save reset.css to sass/imports/_reset.scss
 
-### Imports
+Create styles.scss and import both the above.
 
-Compare
+### Nesting
 
-```css
-@import url(reset.css);
-```
+Refactor the header.
 
 ```css
-@import 'reset';
-```
-
-Examine base.css. The first makes the css available to the browser but keeps them in separate files. The second takes the contents of the files and brings - or compiles - it into one css file.
-
-- environment
-- output style
-
-###Nesting
-
-Refactor the content introduction:
-
-```css
-.content-introduction {
-	max-width: 940px;
-	margin: 6px auto 26px auto;
-	padding-top: 20px;
-	border-top: 3px double #dbd1b5;
-	
+header {
+	h1 {
+		font-size: 3rem;
+	}
 	p {
+		font-size: 1.5rem;
+		max-width: 940px;
 		text-transform: uppercase;
 		line-height: 1.1;
+		margin-bottom: 1rem;
+	}
+	h1 + p {
+		padding-top: 1rem;
+		border-top: 3px double #dbd1b5;
+	}
+	p + p {
+		font-size: 1rem;
+		line-height: 1.1;
 		color: #666;
-	}
-
-	p:first-child {
-		margin-bottom: 12px;
-		font-size: 26px;
-	}
-
-	p:last-child {
-		font-size: 14px;
 	}
 }
 ```
 
-Compare the scss file with the css file.
+### Media Query - Mobile First
+
+Add a media query to hide the paragraphs on small screens:
+
+```
+	p {
+		font-size: 1.5rem;
+		max-width: 940px;
+		text-transform: uppercase;
+		line-height: 1.1;
+		margin-bottom: 1rem;
+		@media (max-width: 480px){
+			display: none;
+		}
+	}
+```
+
+Note: this is NOT a mobile first design pattern. It uses max-width to add display attributes to small screens.
+
+Change it to use mobile first design pattern:
+
+```
+	p {
+		display: none;
+		@media (min-width: 480px){
+			display: block;
+			font-size: 1.5rem;
+			max-width: 940px;
+			text-transform: uppercase;
+			line-height: 1.1;
+			margin-bottom: 1rem;
+		}
+	}
+```
 
 ###Variables
 
-Add to the top of base.scss:
+Add to _variables.scss to imports with:
 
 ```
 //variables
 
-$dk-blue: #4e7c92;
+$max-width: 940px;
+
+$link: #4e7c92;
+$hover: #df3030;
+$text: #333;
+
+$med-gray: #666;
+$light-gray: #ddd;
 $dk-yellow: #dbd1b5;
-$dk-orange: #df3030;
-$md-gray: #ddd;
-$dk-gray: #333;
 ```
 
-And use the colors in base.scss.
+And use the colors in _header.scss.
 
-### Refactor
 
-- create styles.scss with the variables and imports
-- rename base.scss to _base.scss
-- add it to the imports
-- clean up css folder 
-- change link in index.html to `<link rel="stylesheet" type="text/css" href="styles/styles.css" >`
+Note the map file.
 
-### Map files
+- maps the css line numbers to the scss line numbers
+- note the line numbers in the elements inspector
 
-- map the css line numbers to the scss line numbers
-- available in Development mode
-- note the line numbers in the Elements inspector
 
-## The Responsive Main Nav
+## Responsive Main Nav
 
-```html
+Tidy up the old HTML and add a link to shw the menu on small screens:
+
+```
 <nav>
+	<a href="#" id="pull">Menu</a>
 	<ul>
 		<li><a href="#one">Intro</a></li>
 		<li><a href="#two">Summary</a></li>
@@ -176,26 +184,27 @@ And use the colors in base.scss.
 		<li><a href="#five">Education</a></li>
 		<li><a href="#six">Contact</a></li>
 	</ul>
-	<a href="#" id="pull">Menu</a>
 </nav>
 ```
 
-## Responsive Navbar
+Create a sass partial `_navigation.scss` and import it into `styles.css` with `@import 'imports/navigation';`.
 
-Create a sass partial `_navigation.scss` and import it into `styles.css` with `@import 'navigation';`.
+Small screen - hide the navigation
 
-Small screen:
-
-```css
+```
 nav {
 
 	ul {
 		display: none;
 	}
-	
+```
+
+Show and format the link:
+
+```
 	a#pull {
 		display: block;
-		background-color: $dk-blue;
+		background-color: $link;
 		height: 32px;
 		padding-top: 12px;
 		padding-left: 12px;
@@ -212,28 +221,100 @@ nav {
 }
 ```
 
-Toggle display none to block for nav ul. 
+Remove the text element on the #pull.
 
-```css
-ul {
+Make sure it is above the list:
+
+```
+<nav>
+  <a href="#" id="pull"></a>
+  <ul>
+    <li><a href="#one">Intro</a></li>
+    <li><a href="#two">Summary</a></li>
+    <li><a href="#three">Skills</a></li>
+    <li><a href="#four">Experience</a></li>
+    <li><a href="#five">Education</a></li>
+    <li><a href="#six">Contact</a></li>
+  </ul>
+</nav>
+```
+
+
+### Large Screen
+
+Create breakpoints in _variables.scss for 480px and 768px.
+
+```
+$break-sm: 480px;
+$break-med: 768px;
+```
+
+Add media queries for medium and larger screens
+
+Hide the hamburger on wider screens:
+
+```
+a#pull {
 	display: block;
-	background: $md-gray;
-}	
-li {
-	padding: 4px 2px 4px 8px;
-	border-bottom: 1px solid rgba(255,255,255,0.25);
-
-	&:hover {
-		background: $dk-gray;
-
-		a {
-			color: #fff;
-			display: inline-block;
-			width: 100%;
-		}  
+	background-color: $link;
+	height: 32px;
+	padding-top: 12px;
+	padding-left: 12px;
+	@media (min-width: $break-sm) {
+		display: none;
 	}
 }
 ```
+
+Show the navigation:
+
+```
+	ul {
+		display: none;
+		background: $lt-gray;
+		@media (min-width: $break-sm){
+			display: flex;
+			justify-content: space-between;
+			background: $link;
+			text-align: center;
+		}
+	}
+```
+
+The list items (horizontal display)
+
+```
+	li {
+		padding: 4px 2px 4px 8px;
+		border-bottom: 1px solid rgba(255,255,255,0.25);
+		@media (min-width: $break-sm){
+			padding: 0.5rem;
+			border-bottom: none;
+			flex-grow: 1;
+		}
+
+		a {
+			@media (min-width: $break-sm){
+					color: #fff;
+			}
+		}
+
+		&:hover {
+			background: $text;
+
+			a {
+				color: #fff;
+				display: inline-block;
+				width: 100%;
+
+			}  
+		}
+	}
+```
+
+Note the css for hover.
+
+
 
 ### Show/Hide Nav
 
@@ -253,6 +334,12 @@ $('#pull').on('click', function() {
 });
 ```
 
+add .show class to SASS:
+
+```
+.show { display: block }
+```
+
 ```
 const menuButton = document.querySelector('#pull')
 const menu = document.querySelector('nav ul')
@@ -264,80 +351,59 @@ function toggleMenu(){
 }
 ```
 
-Add a breakpoint variable for wide screens to the variables in styles.css:
+### Animation with CSS
 
-```css
-$break-one: 480px;
+Since we cannot animate display block we use properties we can animate to hide the nav:
+
+```
+nav {
+	ul {
+		// display: none;
+		transform: translateY(-200px);
+		max-height: 1px;
+		transition: all .3s;
+		background: $light-gray;
 ```
 
-###Wide screen version
+Use the same properties to show it:
 
-```css
-ul {
-	display: none;
-	background: $md-gray;
-
-	@media (min-width: $break-one) {
-		display: block;
-	}
-
+```
+.show { 
+	transform: translateY(0);
+	max-height: 1000px;
+	transition: all .3s;
 }
 ```
 
-```css
-#pull {
+We also need to get the hamburger out of the way:
+
+```
+a#pull {
+	position: relative;
+	z-index: 20;
 	display: block;
-	background-color: $dk-blue;
-	height: 32px;
-	padding-top: 12px;
-	padding-left: 12px;
-	@media (min-width: $break-one) {
-		display: none;
-	}
-}
 ```
 
-Then use flex:
+Note that we have a poblem in wider screen view - the nav is not showing.
 
-```css
-ul {
-	display: none;
-	background: $md-gray;
+Reset the ul:
 
-	@media (min-width: $break-one) {
-		display: flex;
-		background: $dk-blue;
-	}  
-
-}
 ```
-
-Format the links
-
-```css
-a {
-	@media (min-width: $break-one) {
-		color: #fff;
-	}  
-}
-```
-
-Format the li: 
-
-```css
-li { 
-	padding: 4px 2px 4px 8px;
-	border-bottom: 1px solid rgba(255,255,255,0.25);
-
-	@media (min-width: $break-one) {
-		padding: 8px;
-		border-bottom: none;
-	}
+		@media (min-width: $break-sm){
+			display: flex;
+			justify-content: space-between;
+			background: $link;
+			text-align: center;
+			transform: translateY(0);
+			max-height: 1000px;
+		}
 ```
 
 ## Columns for Content
 
-Content (effects multiple regions - re-examine the DOM)
+Content (effects multiple regions - re-examine the DOM).
+
+In a new _structure.scss file:
 
 ```css
 .content {
@@ -357,13 +423,7 @@ Content (effects multiple regions - re-examine the DOM)
 }
 ```
 
-Create a second breakpoint variable:
-
-```css
-$break-two: 768px;
-```
-
-apply this to medium screen sizes and above only
+Apply the second breakpoint variable to medium screen sizes and above only:
 
 ```css
 @media (min-width: $break-two) {
@@ -389,7 +449,7 @@ apply this to medium screen sizes and above only
 
 The universal approach (applies to all elements):
 
-```css
+```
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -444,7 +504,7 @@ iframe {
 
 ### Video Switcher - JavaScript
 
-Add the active class for the first iframe link
+Add css for the active class (for the first video iframe link):
 
 ```css
 .btn-list {
@@ -457,7 +517,7 @@ Add the active class for the first iframe link
 }
 ```
 
-Add the JavaScript
+The old school JavaScript
 
 ```
 $('.content-video a').on('click',function(){
@@ -963,8 +1023,7 @@ add to media query:
 run a test print
 
 
-###Homework
-Continue to work on your final projects
+
 
 
 ##Notes
