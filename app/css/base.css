@@ -10,7 +10,7 @@ a {
 	-webkit-tap-highlight-color: #4e7c92;
 }
 a:hover {
-	color: #DF3030;
+	color: #4e7c92;
 }
 
 ::selection { background:#4e7c92; color:#fff; }
