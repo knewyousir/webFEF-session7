@@ -35,9 +35,7 @@ Package.json scripts (similar to last week's):
 `$ npm run boom!`
 
 
-## Branding and Introduction. 
-
-Clean up the old html.
+## Header
 
 in base.css
 
