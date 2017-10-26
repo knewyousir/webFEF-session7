@@ -16,7 +16,7 @@
 
 ## Tooling
 
-```
+```sh
 $ cd <session7>
 $ npm init -y
 $ npm install browser-sync node-sass concurrently --save-dev
@@ -24,7 +24,7 @@ $ npm install browser-sync node-sass concurrently --save-dev
 
 Package.json scripts (similar to last week's):
 
-```
+```sh
   "scripts": {
     "sassy": "node-sass --watch sass --output app/css --source-map true",
     "start": "browser-sync start --server 'app' --files 'app'",
@@ -35,9 +35,7 @@ Package.json scripts (similar to last week's):
 `$ npm run boom!`
 
 
-## CSS
-
-Branding and Introduction. 
+## Branding and Introduction. 
 
 Clean up the old html.
 
@@ -69,12 +67,10 @@ header p + p {
 }
 ```
 
-## SASS
+## Aside - Using an App for SASS Preprocessing
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
-
-### Free Options
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
 [Koala](http://koala-app.coms)
