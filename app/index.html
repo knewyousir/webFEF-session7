@@ -4,34 +4,35 @@
   <title>Layout</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <div class="nav">
+  <nav>
+    <a href="#" id="pull"></a>
     <ul>
       <li><a href="#one">Intro</a></li>
       <li><a href="#two">Summary</a></li>
-      <li><a href="#three">Link Three</a></li>
-      <li><a href="#four">Link Four</a></li>
-      <li><a href="#five">Link Five</a></li>
+      <li><a href="#three">Skills</a></li>
+      <li><a href="#four">Experience</a></li>
+      <li><a href="#five">Education</a></li>
       <li><a href="#six">Contact</a></li>
     </ul>
-  </div> 
+  </nav> 
+
 
   <header>
-    <h1>Company name</h1>
-    <div class="content-introduction">
-      <p>{Introduction content-introduction p} Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt.</p>
-      <p>{Tagline} Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-    </div>
+    <h1>Barclays</h1>
+    <p>{Introduction content-introduction p} Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt.</p>
+    <p>{Tagline} Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
   </header>
 
-  <div class="content">
-    <div class="content-main">
+
+  <section>
+
+    <article>
       <div class="content-video"> 
         <iframe src="http://player.vimeo.com/video/1953547?color=ff9933" width="480" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
         <ul class="btn-list">
           <li>
             <a class="active" href="http://player.vimeo.com/video/1953547?color=ff9933">Dartmoore</a>
@@ -50,10 +51,9 @@
       <p>{Summary} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-    </div>
-    <div class="content-sub">
-
+    </article>
+    
+    <aside>
       <p>{Summary} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -94,19 +94,15 @@
         </ul>
       </li>
     </ul>
-  </div>
-</div>
-
-
-
+  </aside>
+</section>
 
 
 
 <div class="secondary">
+  <section>
 
-  <div class="content">
-
-    <div class="content-main">
+    <article>
       <div class="content-slider">
         <img src="img/interface-slider.jpg" alt="" title="A screenshot of the interface design" />
         <p class="caption">{Caption} Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
@@ -117,9 +113,9 @@
       <p>{Summary} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+    </article>
 
-    <div class="content-sub">
+    <aside>
       <ul class="image-tn">
         <li><a href="#"><img src="img/bamboo-tn.jpg" alt="" title="Link to original photo on Flickr" /></a></li>
         <li><a href="#"><img src="img/bridge-tn.jpg" alt="" title="Link to original photo on Flickr" /></a></li>
@@ -133,17 +129,15 @@
       </ul>
       <p>Find more about us elsewhere on the web:</p>
       <p><img src="img/interface-logos.jpg" alt="" title="Links to content on external sites" /></p>
-    </div>
-  </div>
+    </aside>
+
+  </section>
 </div>
 
 
+<section>
 
-
-
-
-<div class="content">
-  <div class="content-main">
+  <article>
     <h2>Latest news</h2>
     <ul>
       <li class="hentry">
@@ -159,9 +153,9 @@
         <abbr class="updated published" title="2008-11-20"><span class="day">20</span> <span class="month">Nov</span> <span class="year">08</span></abbr>
       </li>
     </ul>
-  </div>
+  </article>
 
-  <div class="content-sub">
+  <aside>
     <div class="panel newsletter" title="Contains summarised newsletter content">
       <h2>From our newsletter</h2>
       <h3><a href="#">{Entry title}</a></h3>
@@ -174,16 +168,16 @@
       <p>{Entry summary} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
       <p><a href="#" rel="alternate">Subscribe to our RSS feed</a></p>
     </div>
-  </div>
-</div>
+  </aside>
+
+</section>
 
 
 
 
 
-<div class="footer">
+<footer>
   <div class="siteinfo">
-
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc elit eros, adipiscing nec, convallis et, vehicula quis, dolor. Cras euismod ipsum in risus ultrices ultrices. Proin ipsum turpis, malesuada vel, mattis at, feugiat ac, mi.</p>
 
     <ul>
@@ -205,8 +199,11 @@
       <div class="tel">718-638-9015</div>
     </div>
   </div>
-</div>
+</footer>
 
+<script>
+
+</script>
 
 </body>
 </html>
