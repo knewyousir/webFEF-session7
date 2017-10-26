@@ -37,19 +37,18 @@ Package.json scripts (similar to last week's):
 
 ## Header
 
-in base.css
+In a style block in the html document:
 
 ```css
 header {
 	max-width: 940px;
 }
-
 header h1 {
 	font-size: 3rem;
+	margin: 0;
 }
 header p {
 	font-size: 1.5rem;
-	max-width: 940px;
 	text-transform: uppercase;
 	line-height: 1.1;
 	margin-bottom: 1rem;
@@ -76,24 +75,40 @@ header p + p {
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
 
-Save base.css to sass/imports/_header.scss
-Save reset.css to sass/imports/_reset.scss
 
-Create styles.scss and import both the above.
+### Set up and nesting
 
+Save reset.css to `/sass/imports/_reset.scss`
+Save base.css to `/sass/imports/_base.scss`
+Remove the header css from the html and add it to a new file and save it into the iports folder `/sass/imports/_base.scss`
 
-### Nesting
+Note the underscores in use here as well as the `.scss` extensions.
 
-Refactor the header.
+Note - you will need to remove or comment out the @import statement at the top of this document. Always check for errors by looking at the processes running in the terminal.
+
+Create a new file, styles.scss, in `/sass` and import both the above.
+
+The final `styles.scss` file should look like:
+
+```css
+@import 'imports/reset';
+@import 'imports/base';
+@import 'imports/header';
+```
+
+Since we are using SASS includes we can delete the base.css and reset.css files from the css directory.
+
+Refactor the header in `_header.scss` file.
 
 ```css
 header {
+	max-width: 940px;
 	h1 {
 		font-size: 3rem;
+		margin: 0;
 	}
 	p {
 		font-size: 1.5rem;
-		max-width: 940px;
 		text-transform: uppercase;
 		line-height: 1.1;
 		margin-bottom: 1rem;
@@ -110,49 +125,52 @@ header {
 }
 ```
 
+Inspect the header in the developer tools and note the *mapping*.
+
+- maps the css line numbers to the scss line numbers
+- note the line numbers in the elements inspector
+
 ### Media Query - Mobile First
 
 Add a media query to hide the paragraphs on small screens.
 
 _header.scss:
 
-```
+```css
 	p {
-		font-size: 1.5rem;
-		max-width: 940px;
-		text-transform: uppercase;
-		line-height: 1.1;
-		margin-bottom: 1rem;
+		...
 		@media (max-width: 480px){
 			display: none;
 		}
 	}
 ```
 
-Note: this is NOT a mobile first design pattern. It uses max-width to add display attributes to small screens.
+Note: this is *not* a mobile first design pattern. It uses `max-width` to add display attributes to small screens.
 
-Change it to use mobile first design pattern:
+Change it to use a `min-width` mobile first design pattern:
 
-```
-	p {
-		display: none;
-		@media (min-width: 480px){
-			display: block;
-			font-size: 1.5rem;
-			max-width: 940px;
-			text-transform: uppercase;
-			line-height: 1.1;
-			margin-bottom: 1rem;
-		}
+```css
+p {
+	display: none;
+	@media (min-width: 480px){
+		display: block;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+		line-height: 1.1;
+		margin-bottom: 1rem;
 	}
+}
 ```
 
 ### Variables
 
-Add to _variables.scss to imports with:
+Create and add _variables.scss to imports with:
 
 ```
 //variables
+
+$break-sm: 480px;
+$break-med: 768px;
 
 $max-width: 940px;
 
@@ -165,29 +183,47 @@ $light-gray: #ddd;
 $dk-yellow: #dbd1b5;
 ```
 
-Add breakpoint variables in _variables.scss for 480px and 768px.
+Import it into `styles.scss`. Be sure to import it first in order to make the variables available to the subsequent imports.
 
+Apply the color and break point variables to `_header.scss`. There are four such instances:
+
+```css
+header {
+	max-width: $max-width;
+	h1 {
+		font-size: 3rem;
+		margin: 0;
+	}
+	p {
+		display: none;
+		@media (min-width: $break-sm){
+			display: block;
+			font-size: 1.5rem;
+			text-transform: uppercase;
+			line-height: 1.1;
+			margin-bottom: 1rem;
+		}
+	}
+	h1 + p {
+		padding-top: 1rem;
+		border-top: 3px double $dk-yellow;
+	}
+	p + p {
+		font-size: 1rem;
+		line-height: 1.1;
+		color: $med-gray;
+	}
+}
 ```
-$break-sm: 480px;
-$break-med: 768px;
-```
-
-Apply the color and max-width variables in _header.scss.
-
-
-Note the map file.
-
-- maps the css line numbers to the scss line numbers
-- note the line numbers in the elements inspector
 
 
 ## Responsive Main Nav
 
-Tidy up the old HTML and add a link `<a href="#" id="pull">Menu</a>` to show the menu on small screens:
+Add a link `<a href="#" id="pull"></a>` to show the menu on small screens:
 
-```
+```css
 <nav>
-	<a href="#" id="pull">Menu</a>
+	<a href="#" id="pull"></a>
 	<ul>
 		<li><a href="#one">Intro</a></li>
 		<li><a href="#two">Summary</a></li>
@@ -203,24 +239,22 @@ Create a sass partial `_navigation.scss` and import it into `styles.css` with `@
 
 Small screen - hide the navigation
 
-```
+```css
 nav {
-
 	ul {
 		display: none;
-	}
-	li {
-		padding: 4px 2px 4px 8px;
-		border-bottom: 1px solid rgba(255,255,255,0.25);
 	}
 }
 ```
 
-Show and format the link:
+Show and format the hamburger menu:
 
-```
-
-	a#pull {
+```css
+nav {
+	ul {
+		display: none;
+	}
+	#pull {
 		display: block;
 		background-color: $link;
 		height: 32px;
@@ -228,20 +262,16 @@ Show and format the link:
 		padding-left: 12px;
 	}
 
-	a#pull:after {
+	#pull:after {
 		content:"";
 		background: url(../img/nav-icon.png) no-repeat;
-		background-size: cover; 
 		width: 22px;
 		height: 22px;
-		color: #fff;
+		background-size: cover; 
 		display: inline-block;
 	}
 }
-
 ```
-
-Remove the text element on the #pull.
 
 
 ### Large Screen
@@ -250,13 +280,9 @@ Add media queries for medium and larger screens
 
 Hide the hamburger on wider screens:
 
-```
+```css
 a#pull {
-	display: block;
-	background-color: $link;
-	height: 32px;
-	padding-top: 12px;
-	padding-left: 12px;
+	🔥
 	@media (min-width: $break-sm) {
 		display: none;
 	}
@@ -265,105 +291,99 @@ a#pull {
 
 Show the navigation:
 
-```
-	ul {
-		display: none;
-		background: $light-gray;
-		@media (min-width: $break-sm){
-			display: flex;
-			justify-content: space-between;
-			background: $link;
-			text-align: center;
-		}
+```css
+ul {
+	display: none;
+	@media (min-width: $break-sm){
+		display: flex;
+		justify-content: space-between;
+		background: $link;
+		text-align: center;
 	}
+}
 ```
 
 Can't see the anchor tags:
 
-```
-		a {
-			@media (min-width: $break-sm){
-					color: #fff;
-			}
+```css
+nav {
+	🔥
+	a {
+		@media (min-width: $break-sm){
+			color: #fff;
 		}
+	}
+	🔥
+}
 ```
+
+Note - `space-around` is probably a better choice for the ul formatting here.
 
 Format the list items (horizontal display)
 
-```
+```css
+nav {
+	🔥
 	li {
-		padding: 4px 2px 4px 8px;
-		border-bottom: 1px solid rgba(255,255,255,0.25);
 		@media (min-width: $break-sm){
 			padding: 0.5rem;
-			border-bottom: none;
-			flex-grow: 1;
-		}
-```
-
-Add hover effect:
-
-```
-
-		&:hover {
-			background: $text;
-
-			a {
-				color: #fff;
-				display: inline-block;
-				width: 100%;
-
-			}  
 		}
 	}
+	🔥
+}
 ```
 
-Note the css for hover.
+Add a hover effect to the `<li>` tags using SASS ampersand notation:
+
+```css
+nav {
+	🔥
+	li {
+		@media (min-width: $break-sm){
+			padding: 0.5rem;
+			flex-grow: 1;
+			&:hover {
+				background: $text;
+			}
+		}
+	}
+	🔥
+}
+```
+
+Note the use of flex-grow to allow the li's to expand.
 
 Here is the entire file for _navigation.scss:
 
-```
+```css
 // _navigation.scss
 
 nav {
-
 	ul {
 		display: none;
-		background: $light-gray;
 		@media (min-width: $break-sm){
 			display: flex;
-			justify-content: space-between;
+			justify-content: space-around;
+			align-items: center;
 			background: $link;
 			text-align: center;
 		}
-		a {
-			@media (min-width: $break-sm){
-				color: #fff;
-			}
-		}
-		li {
-			padding: 4px 2px 4px 8px;
-			border-bottom: 1px solid rgba(255,255,255,0.25);
-			@media (min-width: $break-sm){
-				padding: 0.5rem;
-				border-bottom: none;
-				flex-grow: 1;
-			}
+	}
+	li {
+		@media (min-width: $break-sm){
+			padding: 0.5rem;
+			flex-grow: 1;
 			&:hover {
 				background: $text;
-
-				a {
-					color: #fff;
-					display: inline-block;
-					width: 100%;
-
-				}  
 			}
 		}
 	}
-	
-
-	a#pull {
+	a {
+		@media (min-width: $break-sm){
+			color: #fff;
+		}
+	}
+	#pull {
 		display: block;
 		background-color: $link;
 		height: 32px;
@@ -374,54 +394,153 @@ nav {
 		}
 	}
 
-	a#pull:after {
+	#pull:after {
 		content:"";
 		background: url(../img/nav-icon.png) no-repeat;
-		background-size: cover; 
 		width: 22px;
 		height: 22px;
-		color: #fff;
+		background-size: cover; 
 		display: inline-block;
 	}
 }
 ```
 
 
-
 ### Show/Hide Nav
 
-Set the display of nav ul to none and add our scripts at the bottom of the page before the closing body tag:
+Add our scripts at the bottom of the page before the closing body tag:
 
 ```html
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/scripts.js"></script>
+<script>
+  var hamburger = document.querySelector('#pull')
+  var navbar = document.querySelector('nav ul')
+
+  hamburger.addEventListener('click', showMenu)
+
+  function showMenu(){
+    navbar.classList.toggle('showme')
+    event.preventDefault();
+  }
+</script>
 ```
 
-In `js/scripts.js`:
+add .showme class to the SASS:
 
-```
-$('#pull').on('click', function() {
-	$('nav ul').slideToggle();
-	return false;
-});
-```
-
-add .show class to SASS:
-
-```
-.show { display: block }
-```
-
-```
-const menuButton = document.querySelector('#pull')
-const menu = document.querySelector('nav ul')
-menuButton.addEventListener('click', toggleMenu)
-
-function toggleMenu(){
-	menu.classList.toggle('show');
-	event.preventDefault();
+```css
+.showme { 
+	display: block 
 }
 ```
+
+Add to existing SASS
+
+```css
+.showme {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+}
+```
+
+Decorate the list items:
+
+```css
+nav {
+	🔥
+	li {
+		padding: 0.5rem;
+		background: $light-gray;
+		border-bottom: 1px solid #fff;
+		@media (min-width: $break-sm){
+			padding: 0.5rem;
+			flex-grow: 1;
+			&:hover {
+				background: $text;
+			}
+		}
+	}
+	🔥
+}
+```
+
+Check out the wide screen version. We will need to add some CSS to correct the styles.
+
+1 add a blue background color for the li's at the small break point: `background: $link;`
+2 add display block to the links and set their width to 100%
+3 remove the padding where appropriate and add it to the anchor tags
+
+```css
+nav {
+	ul {
+		display: none;
+		@media (min-width: $break-sm){
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			background: $link;
+			text-align: center;
+		}
+	}
+	li {
+		// padding: 0.5rem;
+		background: $light-gray;
+		border-bottom: 1px solid #fff;
+
+		@media (min-width: $break-sm){
+			background: $link;
+			// padding: 0.5rem;
+			flex-grow: 1;
+			&:hover {
+				background: $text;
+			}
+		}
+	}
+	a {
+		padding: 0.5rem;
+		display: block;
+		width: 100%;
+		@media (min-width: $break-sm){
+			color: #fff;
+		}
+	}
+	#pull {
+		display: block;
+		background-color: $link;
+		height: 32px;
+		padding-top: 12px;
+		padding-left: 12px;
+		@media (min-width: $break-sm) {
+			display: none;
+		}
+	}
+
+	#pull:after {
+		content:"";
+		background: url(../img/nav-icon.png) no-repeat;
+		width: 22px;
+		height: 22px;
+		background-size: cover; 
+		display: inline-block;
+	}
+}
+
+.showme {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+}
+```
+
+Also, make the menu items extra easy to click on mobile:
+
+```css
+.showme li {
+	padding: 1rem;
+}
+```
+
 
 ### Animation with CSS
 
