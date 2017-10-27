@@ -1175,7 +1175,7 @@ media queries for transform effects (on hover)
 		float: left;
 		width: 33.333%;
 		padding: 10px;
-	}
+	} 
 
 	li img {
 		padding: 10px;
