@@ -541,12 +541,14 @@ Also, make the menu items extra easy to click on mobile:
 }
 ```
 
+Check the navigation on both sizes and make adjustments as necessary.
+
 
 ### Animation with CSS
 
 Since we cannot animate display block we use properties we can animate to hide the nav:
 
-```
+```css
 nav {
 	ul {
 		// display: none;
@@ -560,7 +562,7 @@ nav {
 Use the same properties to show it:
 
 ```
-.show { 
+.showme { 
 	transform: translateY(0);
 	max-height: 1000px;
 	opacity: 1;
