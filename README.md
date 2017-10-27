@@ -13,11 +13,10 @@
 
 
 
-
 ## Tooling
 
 ```sh
-$ cd <session7>
+$ cd <sessionX>
 $ npm init -y
 $ npm install browser-sync node-sass concurrently --save-dev
 ```
@@ -34,10 +33,20 @@ Package.json scripts (similar to last week's):
 
 `$ npm run boom!`
 
+Note: at this point we are not using SASS but the sassy command is running.
+
+Change the link tag in the html to use `base.css`.
+
+```html
+<link rel="stylesheet" href="css/base.css">
+```
+
 
 ## Header
 
-In a style block in the html document:
+Note that base.css uses an @import to import in reset.css.
+
+Add header.css with the following content and @import it into base.css:
 
 ```css
 header {
@@ -80,7 +89,7 @@ For Scout the setup includes creating and input folder for sass and an output fo
 
 Save reset.css to `/sass/imports/_reset.scss`
 Save base.css to `/sass/imports/_base.scss`
-Remove the header css from the html and add it to a new file and save it into the iports folder `/sass/imports/_base.scss`
+Remove the header css from the html and add it to a new file and save it into the imports folder `/sass/imports/_base.scss`
 
 Note the underscores in use here as well as the `.scss` extensions.
 
@@ -125,6 +134,7 @@ header {
 }
 ```
 
+Compare the resulting css file with the source sass file. 
 Inspect the header in the developer tools and note the *mapping*.
 
 - maps the css line numbers to the scss line numbers
@@ -144,6 +154,8 @@ _header.scss:
 		}
 	}
 ```
+
+Examine the resulting css. 
 
 Note: this is *not* a mobile first design pattern. It uses `max-width` to add display attributes to small screens.
 
@@ -251,9 +263,7 @@ Show and format the hamburger menu:
 
 ```css
 nav {
-	ul {
-		display: none;
-	}
+	🔥
 	#pull {
 		display: block;
 		background-color: $link;
@@ -262,7 +272,7 @@ nav {
 		padding-left: 12px;
 	}
 
-	#pull:after {
+	#pull::after {
 		content:"";
 		background: url(../img/nav-icon.png) no-repeat;
 		width: 22px;
@@ -292,7 +302,8 @@ a#pull {
 Show the navigation:
 
 ```css
-ul {
+nav {
+	ul {
 	display: none;
 	@media (min-width: $break-sm){
 		display: flex;
@@ -300,6 +311,7 @@ ul {
 		background: $link;
 		text-align: center;
 	}
+	🔥
 }
 ```
 
@@ -319,28 +331,13 @@ nav {
 
 Note - `space-around` is probably a better choice for the ul formatting here.
 
-Format the list items (horizontal display)
+Format the list items (horizontal display) and add a hover effect using SASS ampersand notation:
 
 ```css
 nav {
 	🔥
 	li {
 		@media (min-width: $break-sm){
-			padding: 0.5rem;
-		}
-	}
-	🔥
-}
-```
-
-Add a hover effect to the `<li>` tags using SASS ampersand notation:
-
-```css
-nav {
-	🔥
-	li {
-		@media (min-width: $break-sm){
-			padding: 0.5rem;
 			flex-grow: 1;
 			&:hover {
 				background: $text;
@@ -351,57 +348,23 @@ nav {
 }
 ```
 
-Note the use of flex-grow to allow the li's to expand.
-
-Here is the entire file for _navigation.scss:
+Note the use of flex-grow to allow the li's to expand. Note that the hover effect is not clickable.
 
 ```css
-// _navigation.scss
-
 nav {
-	ul {
-		display: none;
+	🔥
+		a {
 		@media (min-width: $break-sm){
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			background: $link;
-			text-align: center;
-		}
-	}
-	li {
-		@media (min-width: $break-sm){
+			color: #fff;
+			/*width: 100%;*/
+			display: block;
 			padding: 0.5rem;
-			flex-grow: 1;
-			&:hover {
-				background: $text;
-			}
 		}
-	}
-	a {
-		@media (min-width: $break-sm){
+		&:hover {
 			color: #fff;
 		}
 	}
-	#pull {
-		display: block;
-		background-color: $link;
-		height: 32px;
-		padding-top: 12px;
-		padding-left: 12px;
-		@media (min-width: $break-sm) {
-			display: none;
-		}
-	}
-
-	#pull:after {
-		content:"";
-		background: url(../img/nav-icon.png) no-repeat;
-		width: 22px;
-		height: 22px;
-		background-size: cover; 
-		display: inline-block;
-	}
+	🔥
 }
 ```
 
@@ -413,29 +376,21 @@ Add our scripts at the bottom of the page before the closing body tag:
 ```html
 <script>
   var hamburger = document.querySelector('#pull')
-  var navbar = document.querySelector('nav ul')
+  var body = document.querySelector('body')
 
   hamburger.addEventListener('click', showMenu)
 
   function showMenu(){
-    navbar.classList.toggle('showme')
+    body.classList.toggle('show-nav')
     event.preventDefault();
   }
 </script>
 ```
 
-add .showme class to the SASS:
+Add a .showme class to the _navigation.scss:
 
 ```css
-.showme { 
-	display: block 
-}
-```
-
-Add to existing SASS
-
-```css
-.showme {
+.show-nav nav ul {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
@@ -443,101 +398,34 @@ Add to existing SASS
 }
 ```
 
-Decorate the list items:
+Decorate the list items in the default small screen view:
 
 ```css
 nav {
 	🔥
 	li {
-		padding: 0.5rem;
 		background: $light-gray;
 		border-bottom: 1px solid #fff;
 		@media (min-width: $break-sm){
-			padding: 0.5rem;
 			flex-grow: 1;
+			background: $link;
 			&:hover {
 				background: $text;
 			}
 		}
 	}
 	🔥
-}
-```
-
-Check out the wide screen version. We will need to add some CSS to correct the styles.
-
-1 add a blue background color for the li's at the small break point: `background: $link;`
-2 add display block to the links and set their width to 100%
-3 remove the padding where appropriate and add it to the anchor tags
-
-```css
-nav {
-	ul {
-		display: none;
-		@media (min-width: $break-sm){
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			background: $link;
-			text-align: center;
-		}
-	}
-	li {
-		// padding: 0.5rem;
-		background: $light-gray;
-		border-bottom: 1px solid #fff;
-
-		@media (min-width: $break-sm){
-			background: $link;
-			// padding: 0.5rem;
-			flex-grow: 1;
-			&:hover {
-				background: $text;
-			}
-		}
-	}
-	a {
-		padding: 0.5rem;
-		display: block;
-		width: 100%;
-		@media (min-width: $break-sm){
-			color: #fff;
-		}
-	}
-	#pull {
-		display: block;
-		background-color: $link;
-		height: 32px;
-		padding-top: 12px;
-		padding-left: 12px;
-		@media (min-width: $break-sm) {
-			display: none;
-		}
-	}
-
-	#pull:after {
-		content:"";
-		background: url(../img/nav-icon.png) no-repeat;
-		width: 22px;
-		height: 22px;
-		background-size: cover; 
-		display: inline-block;
-	}
-}
-
-.showme {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	width: 100%;
 }
 ```
 
 Also, make the menu items extra easy to click on mobile:
 
 ```css
-.showme li {
-	padding: 1rem;
+.show-nav nav ul {
+	🔥
+	li {
+		padding: 1rem;
+	}
 }
 ```
 
@@ -546,38 +434,40 @@ Check the navigation on both sizes and make adjustments as necessary.
 
 ### Animation with CSS
 
-Since we cannot animate display block we use properties we can animate to hide the nav:
+Since we cannot animate display block / none we use properties we *can* animate to hide the nav:
 
 ```css
 nav {
 	ul {
-		// display: none;
+		/*display: none;*/
 		transform: translateY(-200px);
 		max-height: 1px;
 		opacity: 0;
 		transition: all .3s;
-		background: $light-gray;
+		🔥
+	}
 ```
 
-Use the same properties to show it:
+Use the reverse of the same properties to show it:
 
 ```
-.showme { 
+.showme nav ul { 
+	🔥
 	transform: translateY(0);
 	max-height: 1000px;
 	opacity: 1;
-	transition: all .3s;
+	🔥
 }
 ```
 
-We also need to get the hamburger out of the way:
+<!-- We also need to get the hamburger out of the way:
 
 ```
 a#pull {
 	position: relative;
 	z-index: 20;
 	display: block;
-```
+``` -->
 
 Note that we have a problem in wider screen view - the nav is not showing.
 
