@@ -48,17 +48,6 @@ Change the link tag in the html to use `base.css`.
 <link rel="stylesheet" href="css/base.css">
 ```
 
-## Aside - Using an App for SASS Preprocessing
-
-[Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
-
-(Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
-
-[Koala](http://koala-app.coms)
-[Scout app](https://github.com/scout-app/scout-app/)
-
-For Scout the setup includes creating and input folder for sass and an output folder for css.
-
 ## Demo - Using NPM
 
 ```sh
@@ -99,6 +88,19 @@ The final `styles.scss` file should look like:
 @import 'imports/header';
 ```
 
+## Using an App for SASS Preprocessing
+
+[Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
+
+(Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
+
+[Koala](http://koala-app.coms)
+[Scout app](https://github.com/scout-app/scout-app/)
+
+For Scout the setup includes creating and input folder for sass and an output folder for css.
+
+## Nesting SASS
+
 Since we are using SASS includes we can delete the base.css and reset.css files from the css directory.
 
 Refactor the css in `_header.scss` file to use nesting.
@@ -106,6 +108,7 @@ Refactor the css in `_header.scss` file to use nesting.
 ```css
 header {
 	max-width: 940px;
+	margin: 0 auto;
 	h1 {
 		font-size: 3rem;
 		margin: 0;
@@ -138,7 +141,17 @@ Inspect the header in the developer tools and note the *mapping*.
 
 Add a media query to hide the paragraphs on small screens.
 
-_header.scss:
+Normally this would be written as:
+
+```css
+		@media (max-width: 480px){
+			header p {
+				display: none;
+			}
+		}
+```
+
+But becasue we are nesting we can simply write in _header.scss:
 
 ```css
 	p {
@@ -150,6 +163,8 @@ _header.scss:
 ```
 
 Examine the resulting css. 
+
+Examine the mapping.
 
 Note: this is *not* a mobile first design pattern. It uses `max-width` to add display attributes to small screens.
 
@@ -194,6 +209,7 @@ Apply the color and break point variables to `_header.scss`. There are four such
 ```css
 header {
 	max-width: $max-width;
+	margin: 0 auto;
 	h1 {
 		font-size: 3rem;
 		margin: 0;
@@ -225,7 +241,7 @@ header {
 
 Note the link `<a href="#" id="pull"></a>` in the nav. We will use this to show a menu on small screens:
 
-```css
+```html
   <nav>
     <a href="#" id="pull"></a>
     <ul>
@@ -450,15 +466,6 @@ Use the reverse of the same properties to show it:
 }
 ```
 
-<!-- We also need to get the hamburger out of the way:
-
-```
-a#pull {
-	position: relative;
-	z-index: 20;
-	display: block;
-``` -->
-
 Note that we have a problem in wider screen view - the nav is not showing.
 
 Reset the ul in wide screen view:
@@ -531,7 +538,7 @@ Apply the second breakpoint variable to medium screen sizes and above only:
 
 iFrame and images need to expand and contract to fit. 
 
-Note the inline width and height parameters for the iFrame in the HTML.
+Add to `_base.scss`
 
 ```css
 img,
@@ -583,19 +590,6 @@ Add the clearfix to the sections and the .secondary div
 `<div class="secondary clearfix">`
 
 ### Video Switcher - JavaScript
-
-The old school JavaScript
-
-```js
-$('.content-video a').on('click',function(){
-	$('.content-video a').removeClass('active');
-	$(this).addClass('active');
-	var videoToPlay = $(this).attr('href');
-	$('iframe').attr('src',videoToPlay);
-	console.log(videoToPlay);
-	return false;
- });
-```
 
 ```js
 const videoLinks = document.querySelectorAll('.content-video a')
@@ -679,7 +673,22 @@ Format the video buttons
 	}
 	.active { 
 		background: #87a3af;
-		text-shadow: none; 
+		color: #fff;
+		padding: 0.25rem;
+	}
+}
+```
+
+Refactor to use flexbox
+
+```css
+.btn-list {
+	padding: 6px;
+	display: flex;
+	margin-bottom:1rem;
+	justify-content: space-around;
+	.active { 
+		background: #87a3af;
 		color: #fff;
 		padding: 0.25rem;
 	}
@@ -694,13 +703,12 @@ Note the need for border-box and the new variable.
 .footer {
 	clear: both;
 	margin-top: 40px;
-	background-color: $dk-blue;
+	background-color: $link;
 	min-height: 320px;
 	.siteinfo {
 		max-width: $max-width;
 		margin: 0 auto;
 		color: #fff;
-		text-shadow: none;
 		p, ul, .vcard {
 			box-sizing: border-box;
 			width: 33%;
