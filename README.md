@@ -173,8 +173,6 @@ p {
 Create and add _variables.scss to imports with:
 
 ```
-//variables
-
 $break-sm: 480px;
 $break-med: 768px;
 
