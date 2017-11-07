@@ -59,7 +59,7 @@ Change the link tag in the html to use `base.css`.
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
 
-## Tooling
+## Demo - Using NPM
 
 ```sh
 $ cd <sessionX>
