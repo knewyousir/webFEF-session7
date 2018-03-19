@@ -5,17 +5,20 @@
 1. Install [GIT](https://git-scm.com) on your laptop
 2. Carefully follow the tutorial on [Gituhub](https://try.github.io/levels/1/challenges/1)
 3. Create an account on [Github](https://github.com)
-1. Review the process used to set up this project and continue to add JavaScript for the video player.
+1. Review the process used to set up this project and continue to add JavaScript for the video player
+1. Updload your results to Github and send me a link
 
 ![image](wide.png)
 ![image](mobile.png)
 
 
+Examine the structure of `index.html` in the app folder. Note the it uses `base.css`.
+
 ## Header
 
 Note that base.css uses an @import to import in reset.css.
 
-Add header.css with the following content and @import it into base.css:
+Add header.css with the following content and use `@import` to include it in base.css:
 
 ```css
 header {
@@ -56,17 +59,17 @@ $ npm init -y
 $ npm install browser-sync node-sass concurrently --save-dev
 ```
 
-Add the scripts to your package.json (similar to last week's):
+Add the scripts to your package.json:
 
 ```sh
   "scripts": {
-    "sassy": "node-sass --watch sass --output app/css --source-map true",
+    "sassy": "node-sass --watch scss --output app/css --source-map true",
     "start": "browser-sync start --server 'app' --files 'app'",
     "boom!": "concurrently \"npm run start\" \"npm run sassy\" "
   },
 ```
 
-`$ npm run boom!`
+And run `$ npm run boom!`
 
 ### Set up and nesting
 
