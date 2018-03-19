@@ -12,7 +12,11 @@
 ![image](mobile.png)
 
 
-Examine the structure of `index.html` in the app folder. Note the it uses `base.css`.
+Examine the structure of `index.html` in the app folder. Note that it uses `base.css`. Also note the use of page fragment links - e.g.:
+
+```html
+<li><a href="#videos">Videos</a></li>
+```
 
 ## Header
 
