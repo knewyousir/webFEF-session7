@@ -4,7 +4,7 @@
   "description": "## Homework",
   "main": "index.js",
   "scripts": {
-    "sassy": "node-sass --watch \"scss\" --output \"app/css\" --source-map true",
+    "sassy": "node-sass --watch \"scss\" --output \"app/css\" --recursive --source-map true",
     "start": "browser-sync start --server \"app\" --files \"app\"",
     "boom!": "concurrently \"npm run start\" \"npm run sassy\" "
   },

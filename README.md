@@ -939,7 +939,7 @@ Set the text in the carousel.
 
 Find the appropriate traversal.
 
-```
+```js
 function runCarousel(){
 	const imageHref = this.getAttribute('href')
 	const titleText = this.firstChild.title
@@ -949,7 +949,7 @@ function runCarousel(){
 }
 ```
 
-```
+```js
 function runCarousel(){
 	const imageHref = this.getAttribute('href')
 	const titleText = this.firstChild.title
