@@ -20,7 +20,7 @@ Examine the structure of `index.html` in the app folder. Note that it uses `base
 
 ## Header
 
-Note that base.css uses an @import to import in reset.css.
+Note that base.css uses an @import to import in reset.css. Reset is a [normalization](https://github.com/sindresorhus/modern-normalize) set of css rules. It ensures proper rendering across browsers.
 
 Add header.css with the following content and use `@import` to include it in base.css:
 
@@ -79,17 +79,17 @@ And run `$ npm run boom!`
 
 ### Set up and nesting
 
-Move reset.css to and the `sass/imports` folder and rename it `/sass/imports/_reset.scss`
-Move base.css to and the `sass/imports` folder and rename it `/sass/imports/_base.scss`
-Move header.css to and the `sass/imports` folder and rename it `/sass/imports/_header.scss`
+Create an imports folder in `scss`.
 
-Note the underscores in use here as well as the `.scss` extensions.
+Move reset.css, base.css and header.css to the `scss/imports` folder and rename them `_reset.scss`, `_base.scss` and `_header.scss`. Delete the original `/css` files/
 
-Note - you should remove or comment out the @import statements. Always check for errors by looking at the processes running in the terminal.
+* Note the underscores as well as the `.scss` extensions.
 
-Create a new file, styles.scss, in `/sass` and import both the above.
+Remove the @import statements `base.css`. 
 
-The final `styles.scss` file should look like:
+* Always check for errors by looking at the processes running in the terminal.
+
+Create a new file, styles.scss, in `/scss` and import the partials. `styles.scss` should look like:
 
 ```css
 @import 'imports/reset';
@@ -97,14 +97,21 @@ The final `styles.scss` file should look like:
 @import 'imports/header';
 ```
 
+Restart the rendering process in the terminal
+
+* use Control-c to quit the currently running script(s)
+* use `npm run boom!` again to kick it off
+
+Confirm that the styles for the header are being applied by checking the browser rendering.
+
 ## Using an App for SASS Preprocessing
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. sass [adds features](http://sass-lang.com/guide) to css.
 
-(Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
-
 [Koala](http://koala-app.coms)
 [Scout app](https://github.com/scout-app/scout-app/)
+
+* Note - on OSX you may need to right click and choose open rather than double click in order to run these.
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
 
@@ -143,12 +150,12 @@ header {
 Compare the resulting css file with the source sass file. 
 Inspect the header in the developer tools and note the *mapping*.
 
-- maps the css line numbers to the scss line numbers
-- note the line numbers in the elements inspector
+* maps the css line numbers to the scss line numbers
+* note the line numbers in the element inspector
 
 ### Media Query - Mobile First
 
-Add a media query to hide the paragraphs on small screens.
+Add a media query to hide the header paragraphs on small screens.
 
 Normally this would be written as:
 
@@ -160,7 +167,7 @@ Normally this would be written as:
 		}
 ```
 
-But becasue we are nesting we can simply write in _header.scss:
+But because we are nesting we can simply write (in _header.scss):
 
 ```css
 	p {
@@ -465,9 +472,9 @@ nav {
 
 Use the reverse of the same properties to show it:
 
-```
+```css
 .showme nav ul { 
-	🔥
+	🔥 
 	transform: translateY(0);
 	max-height: 1000px;
 	opacity: 1;
@@ -490,9 +497,11 @@ Reset the ul in wide screen view:
 			justify-content: space-between;
 			background: $link;
 			text-align: center;
+			// 🔥 new 
 			transform: translateY(0);
 			max-height: 1000px;
 			opacity: 1;
+			// 🔥 end new
 		}
 	}
 ```
