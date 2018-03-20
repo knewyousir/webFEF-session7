@@ -49,12 +49,6 @@ header p + p {
 }
 ```
 
-Change the link tag in the html to use `base.css`.
-
-```html
-<link rel="stylesheet" href="css/base.css">
-```
-
 ## Demo - Using NPM
 
 ```sh
@@ -69,6 +63,14 @@ Add the scripts to your package.json:
   "scripts": {
     "sassy": "node-sass --watch scss --output app/css --source-map true",
     "start": "browser-sync start --server 'app' --files 'app'",
+    "boom!": "concurrently 'npm run start' 'npm run sassy' "
+  },
+```
+
+```sh
+  "scripts": {
+    "sassy": "node-sass --watch \"scss\" --output \"app/css\" --source-map true",
+    "start": "browser-sync start --server \"app\" --files \"app\"",
     "boom!": "concurrently \"npm run start\" \"npm run sassy\" "
   },
 ```
