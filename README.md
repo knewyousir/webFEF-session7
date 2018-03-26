@@ -167,7 +167,7 @@ Normally this would be written as:
 		}
 ```
 
-But because we are nesting we can simply write (in _header.scss):
+But because we are nesting we can simply write (in `_header.scss`):
 
 ```css
 	p {
