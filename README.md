@@ -19,9 +19,9 @@ Examine the structure of `index.html` in the app folder. Note that it uses `base
 
 ## Header
 
-Note that base.css uses an @import to import in reset.css. Reset is a [normalization](https://github.com/sindresorhus/modern-normalize) set of css rules. It ensures proper rendering across browsers.
+Note that `base.css` uses an @import to import `reset.css`. Reset is a [normalization](https://github.com/sindresorhus/modern-normalize) set of css rules. It ensures proper rendering across browsers.
 
-Add header.css with the following content and use `@import` to include it in base.css:
+Add `header.css` with the following content and use `@import` to include it in base.css:
 
 ```css
 header {
@@ -48,7 +48,7 @@ header p + p {
 }
 ```
 
-## Demo - Using NPM
+## Demo - Using NPM for SASS
 
 ```sh
 $ cd <sessionX>
@@ -148,6 +148,10 @@ Click the `Watch Sass` button at the bottom of the editor.
 
 ## Review GIT in VSCode
 
+* Use the terminal in initialize a Git repo
+* Add and commit
+* Create a repo on Github
+* Setup and push
 
 ## Nesting SASS
 
@@ -286,7 +290,6 @@ header {
 }
 ```
 
-
 ## Responsive Main Nav
 
 Note the link `<a href="#" id="pull"></a>` in the nav. We will use this to show a menu on small screens:
@@ -340,7 +343,6 @@ nav {
 }
 ```
 
-
 ### Large Screen
 
 Add media queries for medium and larger screens
@@ -372,7 +374,7 @@ nav {
 }
 ```
 
-Can't see the anchor tags becasue they are the same color as the navbar:
+We can't see the anchor tags because they are the same color as the navbar:
 
 ```css
 nav {
@@ -423,7 +425,6 @@ nav {
 	🔥
 }
 ```
-
 
 ### Show/Hide Nav
 
