@@ -2,9 +2,6 @@
 
 ## Homework
 
-1. Install [GIT](https://git-scm.com) on your laptop
-2. Carefully follow the tutorial on [Gituhub](https://try.github.io/levels/1/challenges/1)
-3. Create an account on [Github](https://github.com)
 1. Review the process used to set up this project and continue to add JavaScript for the video player
 1. Updload your results to Github and send me a link
 
