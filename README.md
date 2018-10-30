@@ -146,6 +146,8 @@ See the full [documentation](https://github.com/ritwickdey/vscode-live-sass-comp
 
 Click the `Watch Sass` button at the bottom of the editor.
 
+## Review GIT in VSCode
+
 
 ## Nesting SASS
 
