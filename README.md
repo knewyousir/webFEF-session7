@@ -8,8 +8,8 @@
 1. Review the process used to set up this project and continue to add JavaScript for the video player
 1. Updload your results to Github and send me a link
 
-![image](wide.png)
-![image](mobile.png)
+![image](other/wide.png)
+![image](other/mobile.png)
 
 
 Examine the structure of `index.html` in the app folder. Note that it uses `base.css`. Also note the use of page fragment links - e.g.:
