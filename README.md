@@ -1,5 +1,7 @@
 # Foundations Session 7 
 
+mod date 10-30-18
+
 ## Homework
 
 1. Review the process used to set up this project and continue to add JavaScript for the video player
