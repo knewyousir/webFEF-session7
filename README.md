@@ -1,10 +1,10 @@
 # Foundations Session 7 
 
-mod date 10-30-18
+Install [Visual Studio Code](https://code.visualstudio.com) now.
 
 ## Homework
 
-1. Review the process used to set up this project and continue to add JavaScript for the video player
+1. Review the process used to set up this project and add JavaScript for the video player
 1. Updload your results to Github and send me a link
 
 ![image](other/wide.png)
@@ -113,6 +113,39 @@ Confirm that the styles for the header are being applied by checking the browser
 * Note - on OSX you may need to right click and choose open rather than double click in order to run these.
 
 For Scout the setup includes creating and input folder for sass and an output folder for css.
+
+## Using VSCode for SASS Processing
+
+Most editors will offer the ability do preprocessing as well as browser refresh.
+
+[Visual Studio Code](https://code.visualstudio.com) offers an array of plug-ins that we can use to perform the SASS preprocessing function. VS Code is remarkably flexible and offers a setting for almost anything you could wish for. See the Visual Studio Code [documentation](https://code.visualstudio.com/docs/getstarted/settings) for changing settings.
+
+[Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) for VS Code.
+
+Install Live SASS Compiler and set the _workspace settings_ as shown:
+
+```js
+{
+    "liveSassCompile.settings.formats": [
+        {
+            "savePath": "app/css",
+            "format": "expanded"
+        }
+    ],
+    "liveSassCompile.settings.excludeList": [
+        "**/node_modules/**",
+        ".vscode/**",
+        "**/other/**"
+    ]
+}
+```
+
+Note the `.vscode` directory that is created for per project settings.
+
+See the full [documentation](https://github.com/ritwickdey/vscode-live-sass-compiler/blob/master/docs/settings.md) for settings.
+
+Click the `Watch Sass` button at the bottom of the editor.
+
 
 ## Nesting SASS
 
