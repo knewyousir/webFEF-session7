@@ -1,27 +1,60 @@
-header {
-	max-width: $max-width;
-	margin: 0 auto;
-	h1 {
-		font-size: 3rem;
-		margin: 0;
-	}
-	p {
+nav {
+    ul {
 		display: none;
 		@media (min-width: $break-sm){
-			display: block;
-			font-size: 1.5rem;
-			text-transform: uppercase;
-			line-height: 1.1;
-			margin-bottom: 1rem;
+			display: flex;
+			justify-content: space-between;
+			background: $link;
+			text-align: center;
 		}
 	}
-	h1 + p {
-		padding-top: 1rem;
-		border-top: 3px double $dk-yellow;
+	a {
+		@media (min-width: $break-sm){
+			color: #ffff;
+			display: block;
+			padding: 0.5rem;
+		}
+		&:hover {
+			color: #ffff;
+		}
 	}
-	p + p {
-		font-size: 1rem;
-		line-height: 1.1;
-		color: $med-gray;
+	li {
+		background: $light-gray;
+		border-bottom: 1px solid #ffff;
+
+		@media (min-width: $break-sm){
+			flex-grow: 1;
+			&:hover {
+				background-color: $text;
+			}
+		}
+	}
+	#pull {
+		display: block;
+		background-color: $link;
+		height: 32px;
+		padding-top: 12px;
+		padding-left: 12px;
+		@media (min-width: $break-sm) {
+			display: none;
+		}
+	}
+    #pull::after {
+		content:"";
+		background: url(../img/nav-icon.png) no-repeat;
+		width: 22px;
+		height: 22px;
+		background-size: cover; 
+		display: inline-block;
+	}
+}
+
+.show-nav nav ul {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	li {
+		padding: 1rem;
 	}
 }
