@@ -75,7 +75,12 @@ a:hover {
 }
 
 nav ul {
-  display: none;
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+  -webkit-transition: all .5s linear;
+  transition: all .5s linear;
+  max-height: 1px;
+  opacity: 0;
 }
 
 @media (min-width: 480px) {
@@ -152,6 +157,10 @@ nav #pull::after {
           flex-direction: column;
   position: absolute;
   width: 100%;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  max-height: 1000px;
+  opacity: 1;
 }
 
 .show-nav nav ul li {

@@ -1,6 +1,10 @@
 nav {
     ul {
-		display: none;
+		// display: none;
+		transform: translateY(-200px);
+		transition: all .5s linear;
+		max-height: 1px;
+		opacity: 0;
 		@media (min-width: $break-sm){
 			display: flex;
 			justify-content: space-between;
@@ -57,4 +61,7 @@ nav {
 	li {
 		padding: 1rem;
 	}
+	transform: translateY(0);
+	max-height: 1000px;
+	opacity: 1;
 }
