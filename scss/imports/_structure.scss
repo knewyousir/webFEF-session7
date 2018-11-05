@@ -1,0 +1,17 @@
+@media (min-width: $break-sm) {
+    section {
+        max-width: $max-width;
+        margin: 0 auto;
+        padding-bottom: 1.5em;
+    }
+    article {
+        box-sizing: border-box;
+        float: left;
+        width: 60%;
+        padding-right: 24px;
+    }
+    aside {
+        float: right;
+        width: 40%;
+    }
+}
